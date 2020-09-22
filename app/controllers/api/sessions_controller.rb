@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
       sign_in!(@user)
       render 'api/users/show'
     else
-      render :json @user.errors.full_messages, status 401 
+      render json: @user.errors.full_messages, status 401 
     end
 
   end
@@ -17,3 +17,5 @@ class Api::SessionsController < ApplicationController
   end
 
 end
+  
+
