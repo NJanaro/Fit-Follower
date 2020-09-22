@@ -6,14 +6,19 @@ class Api::SessionsController < ApplicationController
       sign_in!(@user)
       render 'api/users/show'
     else
-      render json: @user.errors.full_messages
+      render json: ["password or username was incorrect"], status: 401
     end
 
   end
 
   def destroy
-    sign_out!
-    redirect_to new_session_url
+    @user = current_user
+    if @user
+      sign_out!
+      render 'api/users/show'
+    else
+      render json: ["You aren't currently signed in"]
+    end
   end
 
 end
