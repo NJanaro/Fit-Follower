@@ -6,11 +6,11 @@ class Api::UsersController < ApplicationController
       sign_in!(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status: 401
+      render json: @user.errors.full_messages
     end
   end
 
-  
+
 
   private
 
