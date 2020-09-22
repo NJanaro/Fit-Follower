@@ -1,4 +1,4 @@
-class StaticPagesCongroller < ApplicationController
+class StaticPagesController < ApplicationController
 
     def root
     end

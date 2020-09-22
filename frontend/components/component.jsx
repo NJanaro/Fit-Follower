@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+
+// import App from './app';
 
 class Component extends React.Component{
 
@@ -8,3 +12,5 @@ class Component extends React.Component{
         )
     }
 }
+
+export default Component;
