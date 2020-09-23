@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
-import App from './app';
+import App from '../app';
 
 class FitFollower extends React.Component{
     constructor(props){
@@ -12,7 +12,7 @@ class FitFollower extends React.Component{
     render(){
         return (
           <>
-            <Provider store={this.props.state}>
+            <Provider store={this.props.store}>
               <HashRouter>
                 <App/>
               </HashRouter>

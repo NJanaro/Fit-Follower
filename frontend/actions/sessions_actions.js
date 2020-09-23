@@ -27,3 +27,4 @@ export const logout = () => dispatch => (
     SessionApiUtil.logout()
         .then(() => dispatch(removeCurrentUser()))
 )
+

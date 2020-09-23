@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FitFollower from './components/fit_follower';
-import createState from './store/store'
+import FitFollower from './components/root';
+import createStore from './store/store';
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    const state = createState();
+    const store = createStore();
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
     const root = document.getElementById("root");
-    ReactDOM.render(<FitFollower state={state}/>, root);
+    ReactDOM.render(<FitFollower store={store}/>, root);
 })
