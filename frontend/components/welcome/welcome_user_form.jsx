@@ -45,7 +45,7 @@ class WelcomeUserForm extends React.Component {
             <label htmlFor="password"></label>
             <input
               id="password"
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={this.update("password")}
             />
