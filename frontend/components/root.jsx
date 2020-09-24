@@ -4,7 +4,7 @@ import { HashRouter } from 'react-router-dom';
 
 import App from '../app';
 
-class FitFollower extends React.Component{
+class Root extends React.Component{
     constructor(props){
         super(props);
     }
@@ -22,4 +22,4 @@ class FitFollower extends React.Component{
     }
 }
 
-export default FitFollower;
+export default Root;

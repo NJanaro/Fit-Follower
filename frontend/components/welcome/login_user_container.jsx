@@ -1,17 +1,7 @@
 import { connect } from "react-redux";
 import React from "react";
 import WelcomeUserForm from "./welcome_user_form";
-import { login } from "../../actions/users_actions";
-
-
-
-class LoginUserForm extends React.Component {
-    
-    
-    render(){
-        return null
-    }
-}
+import { login } from "../../actions/sessions_actions";
 
 
 const mSTP = (state) => ({
@@ -23,4 +13,4 @@ const mDTP = (dispatch) => ({
   processForm: (user) => dispatch(login(user)),
 });
 
-export default connect(mSTP, mDTP)(LoginUserForm);
+export default connect(mSTP, mDTP)(WelcomeUserForm);

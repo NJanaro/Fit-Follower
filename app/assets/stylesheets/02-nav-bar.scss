@@ -1,0 +1,33 @@
+.navbar-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 32px;
+    padding: 11px;
+    background-color: #ffffff;
+    border-bottom: solid 1px #f0f0f5;
+
+}
+
+.navbar-logo {
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    font-size: 24px ;
+    font-stretch: expanded;
+    font-weight: bolder;
+    color: #FC5224;
+    margin-right: auto;
+}
+
+.login-button {
+    font: bold 13px Arial;
+    display:inline-block;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: white;
+    background-color: #FC5224;
+    padding: 6px 12px 6px 12px;
+    border: 1px solid #FC5224;
+    border-radius: 5px;
+ 
+
+}

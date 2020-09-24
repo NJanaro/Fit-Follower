@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FitFollower from './components/root';
+import Root from './components/root';
 import createStore from './store/store';
 
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         store =createStore();
     }
     const root = document.getElementById("root");
-    ReactDOM.render(<FitFollower store={store}/>, root);
+    ReactDOM.render(<Root store={store}/>, root);
     window.getState = store.getState;
     window.dispatch = store.dispatch;
 })
