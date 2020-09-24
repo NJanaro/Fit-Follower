@@ -8,5 +8,5 @@
 
 
     users = User.create([
-        {username: "steve", email:"steve.smith@email.com", password_digest: rand(1000..2000)}
+        {email:"steve.smith@email.com", password: "password123"}
     ])

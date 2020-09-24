@@ -5,9 +5,21 @@ import createStore from './store/store';
 
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    const store = createStore();
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
+    let store;
+    if (window.currentUser) {
+        const preloadedState = {
+            session: {id: window.currentUser.id},
+            entities: {
+                users: { [window.currentUser.id]:window.currentUser}
+            }
+        };
+        store = createStore(preloadedState);
+        delete window.currentUser;
+    } else {
+        store =createStore();
+    }
     const root = document.getElementById("root");
     ReactDOM.render(<FitFollower store={store}/>, root);
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
 })

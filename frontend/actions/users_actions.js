@@ -1,9 +1,11 @@
 
 import * as UserApiUtil from '../utils/user_utils';
-import {login} from './sessions_actions';
+import {receiveCurrentUser} from './sessions_actions';
+
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
+
 
 
 
@@ -29,7 +31,7 @@ export const fetchUsers = () => dispatch =>(
 
 export const createUser = (user) => dispatch =>(
     UserApiUtil.createUser(user)
-        .then((user)=> dispatch())
+        .then((user)=> dispatch(receiveCurrentUser(user)))
 )
 
 

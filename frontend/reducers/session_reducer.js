@@ -1,13 +1,15 @@
 import {RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER} from '../actions/sessions_actions';
 
-const initialState = {}
+const initialState = {
+  currentUser:null
+}
 export default (state = initialState, action) => {
   Object.freeze(state);
   switch (action.type) {
   case RECEIVE_CURRENT_USER:
-    return {id:action.user.id};
+    return Object.assign({}, {currentUser:action.user});
   case LOGOUT_CURRENT_USER:
-    return {id:null}; 
+    return initialState;
   default:
     return state;
   }

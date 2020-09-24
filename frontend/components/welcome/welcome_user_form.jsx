@@ -4,8 +4,7 @@ class WelcomeUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        id:"",
-        username: "",
+        email: "",
         password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +18,8 @@ class WelcomeUserForm extends React.Component {
 
   handleSubmit(e){
       e.preventDefault();
-      this.props.createUser(this.state)
+      this.props.processForm(this.state);
+      // this.props.login(this.state);
   }
 
   render() {
@@ -28,13 +28,6 @@ class WelcomeUserForm extends React.Component {
         <div className="sign-up">
           <form onSubmit={this.handleSubmit}>
             <h1 className="welcome">{this.props.message}</h1>
-            <label htmlFor="username"></label>
-            <input
-              id="username"
-              type="text"
-              placeholder="Username"
-              onChange={this.update("username")}
-            />
             <label htmlFor="email"></label>
             <input
               id="email"
