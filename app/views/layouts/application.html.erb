@@ -14,7 +14,9 @@
           };
       </script>
     <% end %>
-
+    <script type="text/javascript">
+      window.splashURL = "<%= image_url('splash.jpg') %>"
+    </script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>

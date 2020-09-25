@@ -30,12 +30,14 @@ export const fetchUsers = () => dispatch =>(
         .then((users)=>dispatch(login(user)))
 )
 
-export const createUser = (user) => dispatch =>(
-    UserApiUtil.createUser(user)
-        .then((user)=> dispatch(receiveCurrentUser(user))),
-         err => (
-             dispatch(receiveErrors(err.responseJSON))
-         )
-)
-
+export const createUser = (user) => dispatch =>{
+    debugger
+    return UserApiUtil.createUser(user)
+        .then((user)=> dispatch(receiveCurrentUser(user)),
+         err => {
+            //  debugger
+             return dispatch(receiveErrors(err.responseJSON))
+         }
+    )    
+}
 

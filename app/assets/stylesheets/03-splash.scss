@@ -1,0 +1,29 @@
+
+.main {
+    display:flex;
+    justify-content: center;
+}
+
+.splash-main {
+    display:flex;
+    justify-content: start;
+    background-color:red;
+    margin-top: 80px;
+}
+
+.splash-content {
+
+    height:582px;
+    width: 940px; 
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: auto;
+    background-color:grey;
+}
+
+.number1 {
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 80px;
+}

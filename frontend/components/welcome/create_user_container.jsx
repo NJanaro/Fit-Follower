@@ -5,7 +5,7 @@ import {createUser} from '../../actions/users_actions';
 import {login} from '../../actions/sessions_actions';
 
 const mSTP = ({errors}) => ({
-    formType:"Create",
+    formType:"Sign Up",
     message:"Join Fit Follower today, it's Free.",
     errors:errors.session
 })

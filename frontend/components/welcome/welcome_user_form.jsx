@@ -28,8 +28,8 @@ class WelcomeUserForm extends React.Component {
     return (
       <ul>
         {this.props.errors.map((error, idx)=> (
-          <li key={`error=${idx}`}>
-            return {error}
+          <li className='error' key={`error=${idx}`}>
+            {error}
           </li>
         ))}
       </ul>
@@ -57,7 +57,7 @@ class WelcomeUserForm extends React.Component {
               placeholder="Password"
               onChange={this.update("password")}
             />
-            <button className="signup-button">Sign Up</button>
+            <button className="signup-button">{this.props.formType}</button>
           </form>
         </div>
       </>
