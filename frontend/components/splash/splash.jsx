@@ -12,10 +12,14 @@ class Splash extends React.Component {
               <div className="splash-content">
                 <h1 className="number1">The #1 app for runners and cyclists</h1>
                 <div className="splash-content-col">
-                  <img className="splash-img"
+                  <img
+                    className="splash-img"
                     src={window.splashURL}
                     alt="accessories-img"
                   />
+                  <div className="link-box">
+                    <a className="github-link, splash-link" href="https://github.com/NJanaro" >Check out my GitHub</a>
+                  </div>
                 </div>
               </div>
             </div>
