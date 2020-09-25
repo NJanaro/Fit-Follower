@@ -22,12 +22,27 @@ class WelcomeUserForm extends React.Component {
       // this.props.login(this.state);
   }
 
+
+  renderErrors(){
+    console.log(this.props.errors)
+    return (
+      <ul>
+        {this.props.errors.map((error, idx)=> (
+          <li key={`error=${idx}`}>
+            return {error}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   render() {
     return (
       <>
         <div className="sign-up">
           <form onSubmit={this.handleSubmit}>
             <h1 className="welcome">{this.props.message}</h1>
+            {this.renderErrors()}
             <label htmlFor="email"></label>
             <input
               id="email"

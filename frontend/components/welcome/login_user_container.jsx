@@ -4,9 +4,10 @@ import WelcomeUserForm from "./welcome_user_form";
 import { login } from "../../actions/sessions_actions";
 
 
-const mSTP = (state) => ({
+const mSTP = ({errors}) => ({
   formType: "Create",
-  message: "Join Fit Follower today, it's Free.",
+  message: "Login with email!",
+  errors: errors.session
 });
 
 const mDTP = (dispatch) => ({

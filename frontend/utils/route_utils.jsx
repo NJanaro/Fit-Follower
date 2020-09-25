@@ -24,5 +24,8 @@ const Protected = ({loggedIn, path, component: Component}) => (
         />
 )
 
+
+
+
 export const AuthRoute = withRouter(connect(mSTP, null)(Auth));
 export const ProtectedRoute = withRouter(connect(mSTP, null)(Protected))

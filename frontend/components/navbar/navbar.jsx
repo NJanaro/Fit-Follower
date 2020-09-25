@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { logout } from '../../actions/sessions_actions';
 
 
 class NavBar extends React.Component {
@@ -12,7 +13,7 @@ class NavBar extends React.Component {
                 <div className="nav-right">
 
                     <Link className="login-button" to={this.props.button.url}>{this.props.button.name}</Link>
-                    {/* put a button that onlclick will envoke this.props.logout (bring that in) */}
+                    <button onClick={this.props.logout}>Logout</button>
                 </div>
 
 
