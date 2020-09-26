@@ -7,7 +7,7 @@
 .splash-main {
     display:flex;
     justify-content: start;
-    background-color:red;
+    // background-color:red;
     margin-top: 80px;
 }
 
@@ -18,7 +18,7 @@
     padding-left: 16px;
     padding-right: 16px;
     margin-right: auto;
-    background-color:grey;
+    // background-color:grey;
 }
 
 .number1 {
@@ -42,11 +42,81 @@
 }
 
 .splash-link {
+    display: inline-block;
+    width: 360px;
+    text-align: center;
     font-style: inherit;
     text-decoration: none;
     color:black;
     display:block;
-    padding: 16px 50px;
+    padding: 16px 8px;
+    font-size: 14px;
     margin-top: 16px;
+    margin-left: 16px;
+    background-repeat: no-repeat;
+    background-position: 5% 50% ;
+    border: 1px solid #DFDFE8;
+    transition: 0.1s;
+}
 
+.splash-link:hover {
+    border: 1px solid black;
+    background-color: #f7f7f7;
+}
+
+.github-link {
+    background-color: #3B5998;
+    border: 1px solid #3B5998;
+    color: white;
+}
+
+.github-link:hover {
+    background-color: #3c3e6e;
+    border: 1px solid #3c3e6e;
+    color:white;
+}
+
+
+.or {
+    padding-top: 16px;
+    font-style: inherit;
+    margin:0 auto;
+    text-align: center;
+    font-size: 14px;
+    color: #6D6D78;
+    position: relative;
+}
+
+.or:before {
+    content: "";
+    display: block;
+    width: 42%;
+    height: 1px;
+    background-color: #DFDFE8;
+    position: absolute;
+    left: 16px;
+    top: 80%;
+    z-index: -2;
+
+}
+
+.or::after {
+    content: "";
+    display: block;
+    width: 46%;
+    height: 1px;
+    background-color: #DFDFE8;
+    position: absolute;
+    right: 0px;
+    top: 80%;
+    z-index: -2;
+
+}
+
+.already-member {
+    padding-top: 16px;;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 13px;
+    color: #494950;
 }

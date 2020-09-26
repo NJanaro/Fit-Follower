@@ -18,7 +18,36 @@ class Splash extends React.Component {
                     alt="accessories-img"
                   />
                   <div className="link-box">
-                    <a className="github-link, splash-link" href="https://github.com/NJanaro" >Check out my GitHub</a>
+                    <a
+                      className="github-link splash-link"
+                      href="https://github.com/NJanaro"
+                      style={{ backgroundImage: `url(${window.githubURL})` }}
+                    >
+                      Check out my GitHub
+                    </a>
+                    <a
+                      className="splash-link"
+                      href="mailto:nick.janaro@gmail.com?Subject=Great%20Site!"
+                      style={{ backgroundImage: `url(${window.gmailURL})` }}
+                    >
+                      Contact me
+                    </a>
+                    <a
+                      className="splash-link"
+                      href="https://linkedin.com/in/nick-janaro"
+                      style={{ backgroundImage: `url(${window.liURL})` }}
+                    >
+                      Find me on Linkedin
+                    </a>
+                    <p className="or">or</p>
+                    <Link
+                      className="splash-link"
+                      to="/signup"
+                      style={{ backgroundImage: `url(${window.emailURL})` }}
+                    >
+                      Sign Up with email
+                    </Link>
+                    <p className="already-member">Already a Member? <Link to='/login' style={{textDecoration: 'none'}}>Log In</Link></p>
                   </div>
                 </div>
               </div>
