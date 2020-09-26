@@ -7,6 +7,7 @@ class NavBar extends React.Component {
 
     render(){
         // debugger
+        const classN = this.props.location.pathname === "/signup" ? "login-button" : "sign-up-button";
         const pathName = this.props.location.pathname === "/signup" ? "/login" : "/signup";
         const buttonText = this.props.location.pathname === "/login" ? "Sign Up" : "Log In"; 
         return(
@@ -16,7 +17,7 @@ class NavBar extends React.Component {
                 <div className="nav-right">
                     
                     <Link
-                        className="login-button"
+                        className={classN}
                         to={pathName}>
                         {buttonText}
                     </Link>

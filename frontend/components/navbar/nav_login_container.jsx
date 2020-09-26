@@ -8,10 +8,10 @@ import NavSignupContainer from './nav_signup_container';
 const mSTP = ({ errors }) => ({
   button: {
     name: "Log In",
+    classN: "login",
     url: "/login",
     errors: errors.session,
-},
-redirect: <NavSignupContainer/>
+  }
 });
 
 const mDTP = (dispatch) => ({
