@@ -8,5 +8,5 @@
 
 
     users = User.create([
-        {email:"steve.smith@email.com", password: "password123"}
+        {email:"demo@demo.com", password: "demodemodemo"}
     ])

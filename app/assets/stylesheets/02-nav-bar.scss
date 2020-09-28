@@ -1,6 +1,6 @@
 .navbar-box {
     display: flex;
-    justify-content: space-evenly;
+    // justify-content: center;
     align-items: center;
     height: 32px;
     padding: 11px;
@@ -16,21 +16,21 @@
     font-weight: bolder;
     color: #FC5224;
     margin-right: auto;
-    padding-left: 15%;
+    padding-left: 26%;
 }
 .nav-right{
-    padding-right: 15%;
+    padding-right: 26.5%;
 }
 
 .sign-up-button {
     text-align: center;
-    font: bold 13px Arial;
+    font: bold 12px Arial;
     display:inline-block;
     text-decoration: none;
     background-color: #FFFFFF;
     color: white;
     background-color: #FC5224;
-    padding: 6px 12px 6px 12px;
+    padding: 6px 15px 7px 15px;
     border: 1px solid #FC5224;
     border-radius: 5px;
     transition: 0.1s;
@@ -42,7 +42,7 @@
 
 .login-button {
     text-align: center;
-    font: bold 13px Arial;
+    font: bold 12px Arial;
     display:inline-block;
     text-decoration: none;
     background-color: #FFFFFF;

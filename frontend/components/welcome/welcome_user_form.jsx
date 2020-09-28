@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class WelcomeUserForm extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class WelcomeUserForm extends React.Component {
         password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   update(field){
@@ -35,6 +37,10 @@ class WelcomeUserForm extends React.Component {
     )
   }
 
+  demoLogin() {
+    this.props.demoUser(this.props.demo);
+  }
+
   render() {
     const classN = this.props.location.pathname === "/signup" ? "sign-up-main" : "login-main"; 
     window.props = this.props;
@@ -42,7 +48,7 @@ class WelcomeUserForm extends React.Component {
       <>
         <div
           className="sign-up-main"
-          style={{ backgroundImage: `url(${window.mountainbikeURL})` }}
+          style={this.props.background}
         >
           <div className="form-box">
             <form onSubmit={this.handleSubmit}>
@@ -64,6 +70,7 @@ class WelcomeUserForm extends React.Component {
                   onChange={this.update("password")}
                 />
                 <button className="signup-button">{this.props.formType}</button>
+                <button className="signup-button" onClick={()=>this.demoLogin()}>Demo Login</button>
               </div>
             </form>
           </div>
