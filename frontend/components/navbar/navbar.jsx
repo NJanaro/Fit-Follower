@@ -6,7 +6,6 @@ import { logout } from '../../actions/sessions_actions';
 class NavBar extends React.Component {
 
     render(){
-        // debugger
         const classN = this.props.location.pathname === "/signup" ? "login-button" : "sign-up-button";
         const pathName = this.props.location.pathname === "/signup" ? "/login" : "/signup";
         const buttonText = this.props.location.pathname === "/login" ? "Sign Up" : "Log In"; 

@@ -19,7 +19,6 @@ class WelcomeUserForm extends React.Component {
   handleSubmit(e){
       e.preventDefault();
       this.props.processForm(this.state);
-      // this.props.login(this.state);
   }
 
 
@@ -37,28 +36,37 @@ class WelcomeUserForm extends React.Component {
   }
 
   render() {
+    const classN = this.props.location.pathname === "/signup" ? "sign-up-main" : "login-main"; 
+    window.props = this.props;
     return (
       <>
-        <div className="sign-up">
-          <form onSubmit={this.handleSubmit}>
-            <h1 className="welcome">{this.props.message}</h1>
-            {this.renderErrors()}
-            <label htmlFor="email"></label>
-            <input
-              id="email"
-              type="text"
-              placeholder="Email"
-              onChange={this.update("email")}
-            />
-            <label htmlFor="password"></label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              onChange={this.update("password")}
-            />
-            <button className="signup-button">{this.props.formType}</button>
-          </form>
+        <div
+          className="sign-up-main"
+          style={{ backgroundImage: `url(${window.mountainbikeURL})` }}
+        >
+          <div className="form-box">
+            <form onSubmit={this.handleSubmit}>
+              <div className="welcome">{this.props.message}</div>
+              <div className="input-fields">
+                {this.renderErrors()}
+                <label htmlFor="email"></label>
+                <input
+                  id="email"
+                  type="text"
+                  placeholder="Email"
+                  onChange={this.update("email")}
+                />
+                <label htmlFor="password"></label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={this.update("password")}
+                />
+                <button className="signup-button">{this.props.formType}</button>
+              </div>
+            </form>
+          </div>
         </div>
       </>
     );

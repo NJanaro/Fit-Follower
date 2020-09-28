@@ -31,11 +31,9 @@ export const fetchUsers = () => dispatch =>(
 )
 
 export const createUser = (user) => dispatch =>{
-    debugger
     return UserApiUtil.createUser(user)
         .then((user)=> dispatch(receiveCurrentUser(user)),
          err => {
-            //  debugger
              return dispatch(receiveErrors(err.responseJSON))
          }
     )    

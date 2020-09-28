@@ -6,7 +6,7 @@ import { login } from "../../actions/sessions_actions";
 
 const mSTP = ({errors}) => ({
   formType: "Log In",
-  message: "Login with email!",
+  message: "Log In",
   errors: errors.session
 });
 
