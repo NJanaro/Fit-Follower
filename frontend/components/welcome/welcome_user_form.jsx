@@ -70,7 +70,7 @@ class WelcomeUserForm extends React.Component {
                   onChange={this.update("password")}
                 />
                 <button className="signup-button">{this.props.formType}</button>
-                <button className="signup-button" onClick={()=>this.demoLogin()}>Demo Login</button>
+                <button type="button" className="signup-button" onClick={()=>this.demoLogin()}>Demo Login</button>
               </div>
             </form>
           </div>
