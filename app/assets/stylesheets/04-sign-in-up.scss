@@ -100,9 +100,34 @@ input:focus{
     border: 2px solid  #FC5200;
     border-radius: 5px;
     transition: .1s;
+    text-align: center;
+}
+
+
+.signup-button-demo {
+    box-sizing: border-box;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color:white;
+    padding: 1px 2px 1px 2px;
+    margin-top: 20px;
+    width: 300px;
+    height: 40px;
+    background-color: #FC5200;
+    border: 2px solid  #FC5200;
+    border-radius: 5px;
+    transition: .1s;
+    text-align: center;
+    font-size: 13.333px;
 }
 
 .signup-button:hover{
+    background-color: #ed2d2d;
+    border-color: #ed2d2d;;
+}
+.signup-button-demo:hover{
     background-color: #ed2d2d;
     border-color: #ed2d2d;;
 }

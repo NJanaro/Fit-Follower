@@ -8,7 +8,7 @@ const mSTP = ({ errors }) => ({
   formType: "Log In",
   message: "Log In",
   errors: errors.session,
-  background: { backgroundImage: `url(${window.mountainbikeURL})` },
+  background: { backgroundImage: `url(${window.bike3URL})` },
   demo: {
     email: "demo@demo.com",
     password: "demodemodemo",
