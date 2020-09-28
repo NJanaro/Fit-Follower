@@ -1,6 +1,12 @@
-.dashboard-background {
+
+.dashboard-main {
     display:flex;
-    background-color: black;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.dashboard-background {
+    background-color: grey;
+    width: 100%;
 }
