@@ -5,13 +5,15 @@ import NavBar from './navbar';
 import { logout } from "../../actions/sessions_actions";
 import NavSignupContainer from './nav_signup_container';
 
-const mSTP = ({ errors }) => ({
+const mSTP = (state) => ({
   button: {
     name: "Log In",
     classN: "login",
     url: "/login",
-    errors: errors.session,
-  }
+    errors: state.errors.session,
+  },
+  currentUser: state.session.currentUser
+
 });
 
 const mDTP = (dispatch) => ({

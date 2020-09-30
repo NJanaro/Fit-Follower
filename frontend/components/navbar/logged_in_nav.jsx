@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {logout} from '../../actions/sessions_actions';
+import {connect} from 'react-redux';
 
 class LoggedInNav extends React.Component {
   constructor(props) {
@@ -31,10 +33,10 @@ class LoggedInNav extends React.Component {
           ></div>
           <div className="dropdown">
             <div className="dashboard-hidden-content">
-              <Link className="dashboard-links" to="/dashboard">
+              <Link className="dashboard-links" to="/home/routes">
                 My Routes
               </Link>
-              <Link className="dashboard-links" to="/dashboard">
+              <Link className="dashboard-links" to="/home/dashboard">
                 My Workouts
               </Link>
             </div>
@@ -47,9 +49,9 @@ class LoggedInNav extends React.Component {
           </div>
         </div>
         <div className="nav-right">
-          <Link className={classN} to="{pathName}">
-            {buttonText}
-          </Link>
+          <div onClick={()=>this.props.logout()} className="sign-up-button" >
+            Log out
+          </div>
           {/* <button onClick={this.props.logout}>Logout</button> */}
         </div>
       </nav>
@@ -57,4 +59,9 @@ class LoggedInNav extends React.Component {
   }
 }
 
-export default LoggedInNav;
+
+const mDTP = dispatch => ({
+  logout: () => dispatch(logout())
+})
+
+export default connect(null, mDTP)(LoggedInNav)
