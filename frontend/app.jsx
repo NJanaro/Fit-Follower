@@ -7,8 +7,10 @@ import NavLoginContainer from './components/navbar/nav_login_container';
 // import NavDashboardContainer from './components/navbar/nav_dashboard_container'; this will go in once a user has been logged in
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from './utils/route_utils';
+import LoggedInNav from './components/navbar/logged_in_nav';
 import DashboardContainer from './components/dashboard/dashboard_container';
 import Splash from './components/splash/splash';
+
 
 class App extends React.Component {
 
@@ -22,6 +24,7 @@ class App extends React.Component {
                 <AuthRoute path='/signup' component={SignupUserContainer}/>
                 <AuthRoute path='/' component={Splash}/>
             </Switch>
+            <ProtectedRoute path='/' component={LoggedInNav}/>
             <ProtectedRoute path='/dashboard' component={DashboardContainer}/> 
             </>
         )

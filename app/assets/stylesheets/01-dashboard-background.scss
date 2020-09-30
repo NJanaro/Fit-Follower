@@ -1,5 +1,6 @@
 
-.dashboard-main {
+.dashboard-main {   
+
     display:flex;
     height: 100%;
     width: 100%;
@@ -7,6 +8,12 @@
 }
 
 .dashboard-background {
-    background-color: grey;
+    background-color: #F7F7FA;
     width: 100%;
+    height: 100%;
 }
+
+// #root{
+// 	display:flex;
+// 	justify-content: center;
+// }

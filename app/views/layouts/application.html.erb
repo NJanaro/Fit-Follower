@@ -15,6 +15,9 @@
       </script>
     <% end %>
     <script type="text/javascript">
+      window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
+    </script>
+    <script type="text/javascript">
       window.splashURL = "<%= image_url('splash.jpg') %>"
       window.githubURL = "<%= image_url('GitHub-Mark-Light-32px.png') %>"
       window.gmailURL = "<%= image_url('gmail32.png') %>"
@@ -25,6 +28,8 @@
       window.bike1URL = "<%= image_url('bike1.jpg') %>"
       window.bike2URL = "<%= image_url('bike2.jpg') %>"
       window.bike3URL = "<%= image_url('bike3.jpg') %>"
+      window.magURL = "<%= image_url('mag.png') %>"
+      window.downCaretURL = "<%= image_url('down-caret.png') %>"
     </script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
