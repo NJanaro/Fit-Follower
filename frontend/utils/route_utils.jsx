@@ -8,7 +8,6 @@ const mSTP = (state) => ({
 
 const Auth = ({ loggedIn, path, component: Component }) => {
     console.log(Component)
-    // debugger
   return (
     <Route
       path={path}

@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Map extends React.Component {
