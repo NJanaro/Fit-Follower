@@ -18,7 +18,9 @@ class User < ApplicationRecord
   validates :password, length:{minimum: 6, allow_nil:true}
   before_validation :ensure_session_token
 
-  has_many :routes
+  has_many :routes,
+    foreign_key: :user_id,
+    class_name: :Route
 
 
   def password=(password)
