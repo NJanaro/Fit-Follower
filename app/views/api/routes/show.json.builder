@@ -1,0 +1,1 @@
+json.extract! @route, :id, :user_id, route_name, :distance, :created_at

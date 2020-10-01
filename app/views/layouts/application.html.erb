@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <script
+      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>"
+    ></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <title>FitFollower</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <% if current_user %>
-     <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>"
-    ></script>
       <script>
         window.currentUser = { 
           "id": <%= current_user.id %>,
