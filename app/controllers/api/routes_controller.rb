@@ -23,7 +23,7 @@ class Api::RoutesController < ApplicationController
             @route.destroy
         else
             render json: ["Route doesn't exist"], status: 400
-
+        end
     private
 
     def route_params
