@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script
+    <meta property="og:title" content="Fit Follower" />
+    <meta property='og:image' content="<%= image_url('app/assets/images/fit-follower-splash.png') %>"/>
+    <meta property="og:description"
+      content="A clone of the fitness tracking app Strava."
+    />
+    <meta property="og:url"
+      content="https://fit-follower.herokuapp.com/"
+    />
+
+
+    <script
       src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>"
     ></script>
 
