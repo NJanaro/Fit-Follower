@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta property="og:title" content="Fit Follower" />
-    <meta property='og:image' content="<%= image_url('app/assets/images/fit-follower-splash.png') %>"/>
+    <meta property='og:image' content="<%= image_url('fit-follower-splash.png') %>"/>
     <meta property="og:description"
       content="A clone of the fitness tracking app Strava."
     />
@@ -12,11 +12,12 @@
 
 
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>"
+      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:api_key) %>"
     ></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <title>FitFollower</title>
+    <link rel="icon" type="image/png" href="<%= image_url('FF-Logo.png') %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <% if current_user %>
@@ -28,7 +29,7 @@
       </script>
     <% end %>
     <script type="text/javascript">
-      window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
+      window.googleAPIKey = "<%= Rails.application.credentials.dig(:api_key) %>"
     </script>
     <script type="text/javascript">
       window.splashURL = "<%= image_url('splash.jpg') %>"
