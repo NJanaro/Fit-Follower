@@ -24,7 +24,9 @@ class Api::RoutesController < ApplicationController
         else
             render json: ["Route doesn't exist"], status: 400
         end
-    private
+    end
+    
+        private
 
     def route_params
         params.require(:route).permit(:user_id, :route_name, :description, :distance)
