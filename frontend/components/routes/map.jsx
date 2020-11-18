@@ -18,7 +18,7 @@ class MapContainer extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapStart);
-    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsRenderer = new google.maps.DirectionsRenderer({preserveViewport:true});
     const directionsService = new google.maps.DirectionsService();
     directionsRenderer.setMap(this.map) 
 
@@ -57,7 +57,8 @@ class MapContainer extends React.Component {
             origin: origin,
             destination: finish,
             waypoints: stops,
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+            
           }
           
           return directionsService.route(request, (result, status) => {
