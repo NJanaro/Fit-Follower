@@ -9,6 +9,10 @@
 #  distance    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  start_lat   :float            not null
+#  start_lng   :float            not null
+#  end_lat     :float            not null
+#  end_lng     :float            not null
 #
 class Route < ApplicationRecord
 
