@@ -125,8 +125,13 @@ input:focus{
 
 .signup-button:hover{
     background-color: #ed2d2d;
-    border-color: #ed2d2d;;
+    border-color: #ed2d2d;
 }
+
+.signup-button-demo div:hover{
+    cursor: default;
+}
+
 .signup-button-demo:hover{
     background-color: #ed2d2d;
     border-color: #ed2d2d;;
