@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
           
             <div className="dashboard-main">
               <div className="dashboard-background">
-                <div> This will the the Users Dashboard</div>
+                <div> This will be the the Users Dashboard</div>
               </div>
             </div>
           </>
