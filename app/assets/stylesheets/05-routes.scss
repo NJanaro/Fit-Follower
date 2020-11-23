@@ -1,4 +1,10 @@
 
+#map-main {
+    width: 100vw;
+    height: 100vh;
+    // background-color: green;
+}
+
 #page-title {
     font-size: 32px;
     font-weight: bold;
@@ -34,11 +40,7 @@
     border-bottom: solid 1px #DFDFE8;
 }
 
-#map-main {
-    
-    width: 100vw;
-    height: 100vh;
-    background-color: green;
-
+.new {
+    background-color: grey;
+    height: 100px;
 }
-
