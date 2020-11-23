@@ -19,8 +19,12 @@ class RouteForm extends React.Component {
                     sidebar
                 </div>
                 <div id="map-main">
-                  <div className={this.props.newOrEdit}>testing</div>
-                  <Map></Map>
+                  <div className="new-edit-bar" id={this.props.newOrEdit}>
+                    <div id="delete-marker">Delete Marker</div>
+                  </div>
+                  <div id="map-box">
+                    <Map></Map>
+                  </div>
                 </div>
               </div>
             {/* </div> */}

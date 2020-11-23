@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MarkerManager from '../../utils/marker_manager';
 import {withRouter} from 'react-router-dom';
 
 
