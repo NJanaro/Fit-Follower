@@ -29,9 +29,6 @@ class MapContainer extends React.Component {
         map: this.map,
       });
       this.markers.push(marker);
-      // console.log(this.markers[0].position.lat());
-      // console.log(this.markers);
-      // console.log(this.markers[0].latLng);
       if(this.markers.length >= 2){
           
           const waypoints = this.markers.map( (mark)=> {
@@ -68,33 +65,8 @@ class MapContainer extends React.Component {
           });
       }
     });
-    
-
-
-  
-    // this.MarkerManager = new MarkerManager(this.map);
-    // this.MarkerManager.updateMarkers();
   }
 
-  componentDidUpdate(pastState) {
-    
-    // this.MarkerManager.updateMarkers();
-  }
-
-  // registerListeners() {
-  
-    // google.maps.event.addListener(this.map, "click", (event) => {
-    //   const coords = getCoordsObj(event.latLng);
-    //   this.handleClick(coords);
-    // });
-  // }
-
-  // handleClick(coords) {
-  //   this.props.history.push({
-  //     pathname: "benches/new",
-  //     search: `lat=${coords.lat}&lng=${coords.lng}`,
-  //   });
-  // }
 
   render() {
     // debugger
