@@ -6,10 +6,33 @@ import {withRouter} from 'react-router-dom';
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.markers = [];
+    // this.markers = [];
+    this.state = {
+      markers: []
+    }
+    this.makeMark = this.makeMark.bind(this);
+    this.setMapOnAll = this.setMapOnAll.bind(this);
+  }
+
+  setMapOnAll(map){
+    for (let i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(map);
+    }
   }
   
+  makeMark(latLng){
+    const marker = new google.maps.Marker({
+      position: latLng,
+      map: this.map,
+    });
+    this.setState({
+      markers:[...this.state.markers, marker]
+    })
+  };
+  
   componentDidMount() {
+
+    const deleteButton = document.getElementById("delete-marker");
     
     const mapStart = {
       center: { lat: 40.775566, lng: -73.960456 },
@@ -23,49 +46,96 @@ class MapContainer extends React.Component {
 
     google.maps.event.addListener(this.map, "click", (event) => {
       const latLng = event.latLng
-      const marker = new google.maps.Marker({
-        position: event.latLng,
-        map: this.map,
-      });
-      this.markers.push(marker);
-      if(this.markers.length >= 2){
-          
-          const waypoints = this.markers.map( (mark)=> {
-            return {
-              lat: parseFloat(`${mark.position.lat()}`),
-              lng: parseFloat(`${mark.position.lng()}`)
-            }
-          })
-          
-          let stops = waypoints.slice(1, waypoints.length - 1);
-          
-          stops = stops.map(stop=>{
-            return {location: stop}
-          });
 
-          console.log(stops);
-          console.log(waypoints);
-          const origin = waypoints[0];
-          const finish = waypoints[waypoints.length - 1];
- 
-          console.log(origin);
-          const request = {
-            origin: origin,
-            destination: finish,
-            waypoints: stops,
-            travelMode: 'WALKING',
-            
+      this.makeMark(latLng);
+
+      // if(this.state.markers.length >= 2){
+          
+        // }
+        let waypoints = this.state.markers.map(mark => {
+          return {
+            lat: parseFloat(`${mark.position.lat()}`),
+            lng: parseFloat(`${mark.position.lng()}`)
           }
-          
-          return directionsService.route(request, (result, status) => {
-            if (status == "OK") {
-              directionsRenderer.setDirections(result);
-            }
-          });
-      }
+        })
+        
+        let stops = waypoints.slice(1, waypoints.length - 1);
+        
+        stops = stops.map(stop=>{
+          return {location: stop}
+        });
+        
+        // console.log(stops);
+        // console.log(waypoints);
+        let origin = waypoints[0];
+        let finish = waypoints[waypoints.length - 1];
+        
+        // console.log(origin);
+        let request = {
+          origin: origin,
+          destination: finish,
+          waypoints: stops,
+          travelMode: 'WALKING',
+        }
+        // console.log(request);
+        
+        directionsService.route(request, (result, status) => {
+          this.setMapOnAll(null);
+          if (status == "OK") {
+            directionsRenderer.setDirections(result);
+          }
+        });
+        
     });
-  }
-
+          deleteButton.addEventListener("click", function(){
+            // console.log(waypoints);
+            console.log(this.state.markers)
+            if(this.state.markers.length == 1){
+              return this.state.markers[0].setMap(null);
+            }else{
+            this.setState( oldState => {
+              let oldMark = oldState.markers.pop();
+              return {markers:oldState.markers}
+            });
+            let waypoints = this.state.markers.map(mark => {
+              return {
+                lat: parseFloat(`${mark.position.lat()}`),
+                lng: parseFloat(`${mark.position.lng()}`)
+              }
+            })
+            
+            let stops = waypoints.slice(1, waypoints.length - 1);
+            
+            stops = stops.map(stop=>{
+              return {location: stop}
+            });
+            
+            // console.log(stops);
+            // console.log(waypoints);
+            let origin = waypoints[0];
+            let finish = waypoints[waypoints.length - 1];
+            
+            // console.log(origin);
+            let request = {
+              origin: origin,
+              destination: finish,
+              waypoints: stops,
+              travelMode: 'WALKING',
+            }
+            // console.log(request);
+            if(request.origin){
+              directionsService.route(request, (result, status) => {
+                if (status == "OK") {
+                  directionsRenderer.setDirections(result);
+                }
+              });
+            }
+          }
+          }.bind(this)
+          )
+      
+    }
+    
 
   render() {
     // debugger
