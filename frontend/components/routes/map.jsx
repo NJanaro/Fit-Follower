@@ -14,6 +14,12 @@ class MapContainer extends React.Component {
     this.setMapOnAll = this.setMapOnAll.bind(this);
   }
 
+
+  setDistance(meters, text){
+    const distanceText = document.getElementById("route-distance-text");
+    
+  }
+
   setMapOnAll(map){
     for (let i = 0; i < this.state.markers.length; i++) {
       this.state.markers[i].setMap(map);
@@ -126,6 +132,7 @@ class MapContainer extends React.Component {
             if(request.origin){
               directionsService.route(request, (result, status) => {
                 if (status == "OK") {
+                  console.log(result);
                   directionsRenderer.setDirections(result);
                 }
               });

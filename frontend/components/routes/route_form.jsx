@@ -16,7 +16,12 @@ class RouteForm extends React.Component {
           <>
             <div className="new-route-main">
                 <div className="new-route-sidebar">
-                    sidebar
+                    <label for="route-name">Route Name</label>
+                    <input id="route-name" type="text"/>
+                    <label for="route-description">Description</label>
+                    <textarea id="route-description" />
+                    <label for="route-distance-text">Distance</label>
+                    <input id="route-distance-text" type="text" disabled="true" value=""/>
                 </div>
                 <div id="map-main">
                   <div className="new-edit-bar">

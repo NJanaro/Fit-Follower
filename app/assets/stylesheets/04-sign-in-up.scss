@@ -48,7 +48,7 @@
     margin-top: 30%; 
 }   
 
-input {
+.userInput {
     color:white;
     margin-top: 20px;
     width: 265px;
@@ -61,10 +61,10 @@ input {
     transition: .1s;
 }
 
-input:focus,textarea{
+.userInput:focus,textarea{
     outline:none ! important;
 }
-input:focus{
+.userInput:focus{
     
     background-color:white ;
     color:black;

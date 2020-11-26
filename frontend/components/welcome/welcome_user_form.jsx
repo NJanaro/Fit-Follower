@@ -57,6 +57,7 @@ class WelcomeUserForm extends React.Component {
                 {this.renderErrors()}
                 <label htmlFor="email"></label>
                 <input
+                  className="userInput"
                   id="email"
                   type="text"
                   placeholder="Email"
@@ -64,6 +65,7 @@ class WelcomeUserForm extends React.Component {
                 />
                 <label htmlFor="password"></label>
                 <input
+                  className="userInput"
                   id="password"
                   type="password"
                   placeholder="Password"
