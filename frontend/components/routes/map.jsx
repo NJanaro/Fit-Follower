@@ -34,9 +34,6 @@ class MapContainer extends React.Component {
 
   componentDidMount() {
 
-    const service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix()
-
     const deleteButton = document.getElementById("delete-marker");
 
     const mapStart = {
@@ -75,24 +72,17 @@ class MapContainer extends React.Component {
         return { location: stop };
       });
 
-      // console.log(stops);
-      // console.log(waypoints);
       let origin = waypoints[0];
       let finish = waypoints[waypoints.length - 1];
 
-      // console.log(origin);
       let request = {
         origin: origin,
         destination: finish,
         waypoints: stops,
         travelMode: "WALKING",
-        // suppressMarkers: true
       };
-      // console.log(request);
 
       directionsService.route(request, (result, status) => {
-        // this.setMapOnAll(null);
-        console.log(result.routes[0].legs);
         let distance = 0
         const legs = result.routes[0].legs;
         const showDistance = document.getElementById("route-distance-text");
@@ -111,13 +101,9 @@ class MapContainer extends React.Component {
     });
 
     deleteButton.addEventListener("click", function(){
-        // console.log(waypoints);
-        // console.log(this.state.markers)
         if (this.state.markers.length == 0) {
-          
           return;
         } else {
-          ;
           this.state.markers[this.state.markers.length - 1].setMap(null);
           this.state.markers[this.state.markers.length - 1] = null;
 
@@ -139,23 +125,19 @@ class MapContainer extends React.Component {
             return { location: stop };
           });
 
-          // console.log(stops);
-          // console.log(waypoints);
           let origin = waypoints[0];
           let finish = waypoints[waypoints.length - 1];
 
-          // console.log(origin);
           let request = {
             origin: origin,
             destination: finish,
             waypoints: stops,
             travelMode: "WALKING",
           };
-          // console.log(request);
+
           if (request.origin) {
             directionsService.route(request, (result, status) => {
               if (status == "OK") {
-                console.log(result);
                 let distance = 0
                 const legs = result.routes[0].legs;
                 const showDistance = document.getElementById("route-distance-text");
@@ -171,8 +153,7 @@ class MapContainer extends React.Component {
 
               }
             });
-          }else{
-            
+          }else{   
             directionsRenderer.setMap(null);
           }
         }.bind(this)
