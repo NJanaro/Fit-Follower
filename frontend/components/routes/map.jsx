@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
-    // this.markers = [];
     this.state = {
       markers: [],
     };
@@ -34,6 +33,10 @@ class MapContainer extends React.Component {
   }
 
   componentDidMount() {
+
+    const service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix()
+
     const deleteButton = document.getElementById("delete-marker");
 
     const mapStart = {
@@ -89,10 +92,20 @@ class MapContainer extends React.Component {
 
       directionsService.route(request, (result, status) => {
         // this.setMapOnAll(null);
+        console.log(result.routes[0].legs);
+        let distance = 0
+        const legs = result.routes[0].legs;
+        const showDistance = document.getElementById("route-distance-text");
+
+        legs.forEach(leg=>{
+          distance += leg.distance.value;
+        })
+
+        let toMiles = (distance * 0.00062137).toFixed(2)
         
         if (status == "OK") {
-          console.log(result);
           directionsRenderer.setDirections(result); //result.routes.legs.
+          showDistance.setAttribute("value", toMiles.toString() + " Miles")
         }
       });
     });
@@ -143,8 +156,19 @@ class MapContainer extends React.Component {
             directionsService.route(request, (result, status) => {
               if (status == "OK") {
                 console.log(result);
-                
+                let distance = 0
+                const legs = result.routes[0].legs;
+                const showDistance = document.getElementById("route-distance-text");
+        
+                legs.forEach(leg=>{
+                  distance += leg.distance.value;
+                })
+        
+                let toMiles = (distance * 0.00062137).toFixed(2)        
+
                 directionsRenderer.setDirections(result);
+                showDistance.setAttribute("value", toMiles.toString() + " Miles")
+
               }
             });
           }else{
