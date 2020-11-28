@@ -34,6 +34,55 @@ class MapContainer extends React.Component {
 
   componentDidMount() {
 
+    const travelMode = document.getElementById("route-mode");
+
+    console.log(travelMode);
+
+    travelMode.addEventListener("change", function(){
+      let waypoints = this.state.markers.map((mark) => {
+        return {
+          lat: parseFloat(`${mark.position.lat()}`),
+          lng: parseFloat(`${mark.position.lng()}`),
+        };
+      });
+
+      let stops = waypoints.slice(1, waypoints.length - 1);
+
+      stops = stops.map((stop) => {
+        return { location: stop };
+      });
+
+      let origin = waypoints[0];
+      let finish = waypoints[waypoints.length - 1];
+
+      let request = {
+        origin: origin,
+        destination: finish,
+        waypoints: stops,
+        travelMode: travelMode.value,
+      };
+
+      if (request.origin) {
+        directionsService.route(request, (result, status) => {
+          if (status == "OK") {
+            let distance = 0
+            const legs = result.routes[0].legs;
+            const showDistance = document.getElementById("route-distance-text");
+    
+            legs.forEach(leg=>{
+              distance += leg.distance.value;
+            })
+    
+            let toMiles = (distance * 0.00062137).toFixed(2)        
+
+            directionsRenderer.setDirections(result);
+            showDistance.setAttribute("value", toMiles.toString() + " Miles")
+
+          }
+        });
+      }
+    }.bind(this))
+
     const deleteButton = document.getElementById("delete-marker");
 
     const mapStart = {
@@ -79,7 +128,7 @@ class MapContainer extends React.Component {
         origin: origin,
         destination: finish,
         waypoints: stops,
-        travelMode: "WALKING",
+        travelMode: travelMode.value,
       };
 
       directionsService.route(request, (result, status) => {
@@ -132,7 +181,7 @@ class MapContainer extends React.Component {
             origin: origin,
             destination: finish,
             waypoints: stops,
-            travelMode: "WALKING",
+            travelMode: travelMode.value,
           };
 
           if (request.origin) {

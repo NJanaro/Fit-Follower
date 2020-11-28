@@ -20,6 +20,11 @@ class RouteForm extends React.Component {
                     <input id="route-name" type="text"/>
                     <label for="route-description">Description</label>
                     <textarea id="route-description" />
+                    <label for="route-mode">Travel Mode</label> <br></br>
+                    <select id="route-mode">
+                      <option value="WALKING">Run</option>
+                      <option value="BICYCLING">Bike</option>
+                    </select><br></br>
                     <label for="route-distance-text">Distance</label>
                     <input id="route-distance-text" type="text" disabled="true" value=""/>
                 </div>
