@@ -1,8 +1,16 @@
 import * as RouteApiUtil from '../utils/route_utils';
 
+export const RECEIVE_ROUTE_ERRORS = 'RECEIVE_ROUTE_ERRORS';
 export const RECEIVE_ROUTES = 'RECEIVE_ROUTES';
 export const RECEIVE_ROUTE = 'RECEIVE_ROUTE';
 export const DELETE_ROUTE = 'DELETE_ROUTE';
+
+const receiveRouteErrors = (errors) => {
+    return ({
+        type:RECEIVE_ROUTE_ERRORS,
+        errors
+    })
+}
 
 const receiveRoutes = (userId) => {
     return {
@@ -37,10 +45,13 @@ export const fetchRoute = (userId, routeId) => dispatch => (
         .then(() => dispatch(receiveRoute(userId, routeId)))
 )
 
-export const createRoute = (userId, route) => dispatch => (
-    RouteApiUtil.createRoute(userId, route)
-        .then((route) => dispatch(receiveRoute(route)))
-)
+export const createRoute = (userId, route) => dispatch => {
+    return RouteApiUtil.createRoute(userId, route)
+        .then((route) => dispatch(receiveRoute(route)),
+        err => {
+            return dispatch(receiveRouteErrors(err.responseJSON))
+        })
+    }
 
 export const destroyRoute = (userId, routeId) => dispatch => (
     ApiUtil.destroyRoute(userId, routeId)

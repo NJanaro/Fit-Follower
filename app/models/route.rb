@@ -16,7 +16,7 @@
 #
 class Route < ApplicationRecord
 
-    validates :route_name, :user_id, :start_lat, :start_lng, :end_lat, :end_lng, presence:true
+    validates :route_name, :user_id, presence:true
 
     belongs_to :user,
         foreign_key: :user_id,
