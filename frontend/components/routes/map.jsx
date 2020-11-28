@@ -76,7 +76,10 @@ class MapContainer extends React.Component {
             let toMiles = (distance * 0.00062137).toFixed(2)        
 
             directionsRenderer.setDirections(result);
-            showDistance.setAttribute("value", toMiles.toString() + " Miles")
+            this.props.handler("distance", toMiles.toString() + " Miles");
+            this.props.handler("route_info", JSON.stringify(request));
+
+            // showDistance.setAttribute("value", toMiles.toString() + " Miles")
 
           }
         });
@@ -105,9 +108,6 @@ class MapContainer extends React.Component {
 
       this.makeMark(latLng);
 
-      // if(this.state.markers.length >= 2){
-
-      // }
       let waypoints = this.state.markers.map((mark) => {
         return {
           lat: parseFloat(`${mark.position.lat()}`),
@@ -144,7 +144,10 @@ class MapContainer extends React.Component {
         
         if (status == "OK") {
           directionsRenderer.setDirections(result); //result.routes.legs.
-          showDistance.setAttribute("value", toMiles.toString() + " Miles")
+          // showDistance.setAttribute("value", toMiles.toString() + " Miles")
+          this.props.handler("distance", toMiles.toString() + " Miles");
+          this.props.handler("route_info", JSON.stringify(request));
+
         }
       });
     });
@@ -198,7 +201,12 @@ class MapContainer extends React.Component {
                 let toMiles = (distance * 0.00062137).toFixed(2)        
 
                 directionsRenderer.setDirections(result);
-                showDistance.setAttribute("value", toMiles.toString() + " Miles")
+                // showDistance.setAttribute("value", toMiles.toString() + " Miles")
+                this.props.handler("distance", toMiles.toString() + " Miles");
+                this.props.handler("route_info", JSON.stringify(request));
+
+
+
 
               }
             });

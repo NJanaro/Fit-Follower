@@ -15,6 +15,13 @@ class RouteForm extends React.Component {
       route_info:"",
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handler = this.handler.bind(this);
+  }
+
+  handler(key, value){
+    this.setState({
+      [key]:value
+    })
   }
 
   update(field){
@@ -44,7 +51,7 @@ class RouteForm extends React.Component {
 
 
     render(){
-      // console.log(this.props);
+        console.log(this.state);
         return (
           <>
             <div className="new-route-main">
@@ -54,14 +61,14 @@ class RouteForm extends React.Component {
                     <label for="route-name">Route Name</label>
                     <input id="route-name" type="text" onChange={this.update("route_name")}/>
                     <label for="route-description">Description</label>
-                    <textarea id="route-description" />
+                    <textarea id="route-description" onChange={this.update("description")}/>
                     <label for="route-mode">Travel Mode</label> <br></br>
                     <select id="route-mode">
                       <option value="WALKING">Run</option>
                       <option value="BICYCLING">Bike</option>
                     </select><br></br>
                     <label for="route-distance-text">Distance</label>
-                    <input id="route-distance-text" type="text" disabled="true" value=""/>
+                    <input id="route-distance-text" onChange={this.update("distance")} type="text" disabled="true" value={this.state.distance}/>
                   </form>
                 </div>
                 <div id="map-main">
@@ -70,7 +77,7 @@ class RouteForm extends React.Component {
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
                   </div>
                   <div id="map-box">
-                    <Map></Map>
+                    <Map handler = {this.handler}></Map>
                   </div>
                 </div>
               </div>
