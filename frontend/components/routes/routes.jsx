@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom';
 
 class Routes extends React.Component {
 
+  componentDidMount(){
+    this.props.getRoutes(this.props.userId);
+  };
 
     render(){
         return (
@@ -17,6 +20,9 @@ class Routes extends React.Component {
                     className="sign-up-button">
                   Create New Route    
                   </Link>
+                </div>
+                <div className="mini-map-container">
+                  <div id="placeholder"></div>
                 </div>
               </div>
             {/* </div> */}

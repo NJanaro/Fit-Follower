@@ -7,7 +7,7 @@ class Api::RoutesController < ApplicationController
         
         @route = Route.new(route_params)
         if @route.save
-            render :show
+            render :index, id:params[:user_id]
         else
             render json: @route.errors.full_messages, status: 401
         end

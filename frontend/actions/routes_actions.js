@@ -4,18 +4,19 @@ export const RECEIVE_ROUTE_ERRORS = 'RECEIVE_ROUTE_ERRORS';
 export const RECEIVE_ROUTES = 'RECEIVE_ROUTES';
 export const RECEIVE_ROUTE = 'RECEIVE_ROUTE';
 export const DELETE_ROUTE = 'DELETE_ROUTE';
+// export const CONSTANT = 'CONSTANT';
 
 const receiveRouteErrors = (errors) => {
-    return ({
+    return {
         type:RECEIVE_ROUTE_ERRORS,
         errors
-    })
+    }
 }
 
-const receiveRoutes = (userId) => {
+const receiveRoutes = (routes) => {
     return {
         type: RECEIVE_ROUTES,
-        userId
+        routes
     }
 }
 
@@ -37,7 +38,7 @@ const deleteRoute = (userId, routeId) => {
 
 export const fetchRoutes = (userId) => dispatch => (
     RouteApiUtil.fetchRoutes(userId)
-        .then(() => dispatch(receiveRoutes(userId)))
+        .then((routes) => dispatch(receiveRoutes(routes)))
 )
 
 export const fetchRoute = (userId, routeId) => dispatch => (
@@ -47,7 +48,7 @@ export const fetchRoute = (userId, routeId) => dispatch => (
 
 export const createRoute = (userId, route) => dispatch => {
     return RouteApiUtil.createRoute(userId, route)
-        .then((route) => dispatch(receiveRoute(route)),
+        .then((route) => dispatch(receiveRoutes(userId)),
         err => {
             return dispatch(receiveRouteErrors(err.responseJSON))
         })
