@@ -48,7 +48,7 @@ export const fetchRoute = (userId, routeId) => dispatch => (
 
 export const createRoute = (userId, route) => dispatch => {
     return RouteApiUtil.createRoute(userId, route)
-        .then((route) => dispatch(receiveRoutes(userId)),
+        .then((routes) => dispatch(receiveRoutes(routes)),
         err => {
             return dispatch(receiveRouteErrors(err.responseJSON))
         })
