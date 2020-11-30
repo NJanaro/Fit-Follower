@@ -49,9 +49,8 @@ export const fetchRoute = (userId, routeId) => dispatch => (
 export const createRoute = (userId, route) => dispatch => {
     return RouteApiUtil.createRoute(userId, route)
         .then((routes) => dispatch(receiveRoutes(routes)),
-        err => {
-            return dispatch(receiveRouteErrors(err.responseJSON))
-        })
+        (err) => dispatch(receiveRouteErrors(err.responseJSON))
+        )
     }
 
 export const destroyRoute = (userId, routeId) => dispatch => (

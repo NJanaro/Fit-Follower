@@ -32,17 +32,20 @@ class RouteForm extends React.Component {
     }
   }
 
-  // confirmRedirect(){
-  //   if(this.)
-  // }
+
+
+
 
   handleSubmit(e){
+    const cb = function(err){
+      if(err){
+        this.setState({redirect:true})
+      }
+    }.bind(this)
     
     e.preventDefault();
-    this.props.processForm(this.props.userId, this.state);
-    if(this.props.errors.length == 0){
-      this.setState({redirect:true})
-    }
+    this.props.processForm(this.props.userId, this.state)
+      .then((err) => cb(err));
   }
 
   renderErrors(){
