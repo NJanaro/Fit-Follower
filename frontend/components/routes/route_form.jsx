@@ -8,14 +8,12 @@ class RouteForm extends React.Component {
     super(props);
 
     this.state = {
-      route:{
         user_id: this.props.userId,
         route_name:"",
         description:"",
         distance:"",
         route_info:"",
-      },
-      redirect: false,
+        redirect:false
     }
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,12 +32,14 @@ class RouteForm extends React.Component {
     }
   }
 
+  // confirmRedirect(){
+  //   if(this.)
+  // }
+
   handleSubmit(e){
     
     e.preventDefault();
-    this.props.processForm(this.props.userId, this.state.route);
-    //write if statement to link to my_routes_container if no errors
-    // debugger;
+    this.props.processForm(this.props.userId, this.state);
     if(this.props.errors.length == 0){
       this.setState({redirect:true})
     }
@@ -64,7 +64,7 @@ class RouteForm extends React.Component {
     render(){
         console.log(this.state);
         if (this.state.redirect){
-          return <Redirect to='/home/route'/>;
+          return <Redirect to='/home/routes'/>;
         }
         return (
           <>
@@ -89,7 +89,6 @@ class RouteForm extends React.Component {
                   <div className="new-edit-bar">
                     <div id="delete-marker">Delete Marker</div>
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
-                    {this.redirect == true ? <Redirect to='/home/routes'/> : null}
                   </div>
                   <div id="map-box">
                     <Map handler = {this.handler}></Map>
