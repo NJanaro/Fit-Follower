@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './map';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 class RouteForm extends React.Component {
   
@@ -8,12 +8,16 @@ class RouteForm extends React.Component {
     super(props);
 
     this.state = {
-      user_id: this.props.userId,
-      route_name:"",
-      description:"",
-      distance:"",
-      route_info:"",
+      route:{
+        user_id: this.props.userId,
+        route_name:"",
+        description:"",
+        distance:"",
+        route_info:"",
+      },
+      redirect: false,
     }
+    this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
   }
@@ -33,7 +37,12 @@ class RouteForm extends React.Component {
   handleSubmit(e){
     
     e.preventDefault();
-    this.props.processForm(this.props.userId, this.state);
+    this.props.processForm(this.props.userId, this.state.route);
+    //write if statement to link to my_routes_container if no errors
+    // debugger;
+    if(this.props.errors.length == 0){
+      this.setState({redirect:true})
+    }
   }
 
   renderErrors(){
@@ -54,6 +63,9 @@ class RouteForm extends React.Component {
 
     render(){
         console.log(this.state);
+        if (this.state.redirect){
+          return <Redirect to='/home/route'/>;
+        }
         return (
           <>
             <div className="new-route-main">
@@ -77,6 +89,7 @@ class RouteForm extends React.Component {
                   <div className="new-edit-bar">
                     <div id="delete-marker">Delete Marker</div>
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
+                    {this.redirect == true ? <Redirect to='/home/routes'/> : null}
                   </div>
                   <div id="map-box">
                     <Map handler = {this.handler}></Map>
