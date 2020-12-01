@@ -4,7 +4,7 @@ import Routes from './routes';
 import {fetchRoutes} from '../../actions/routes_actions'
 
 const mSTP = ({entities, session}) => ({
-    routes:entities.routes, 
+    routes:entities.routes,
     userId: session.currentUser.id,
 });
 
