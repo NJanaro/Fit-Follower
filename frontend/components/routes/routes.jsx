@@ -18,7 +18,7 @@ class Routes extends React.Component {
         <div className="myMiniMaps">
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`}>
-              <MiniMap info={this.props.routes}/>
+              <MiniMap info={this.props.routes[idx + 1]}/>
             </div>
           ))}
         </div>

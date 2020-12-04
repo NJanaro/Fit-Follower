@@ -8,10 +8,15 @@ class MiniMap extends React.Component {
     }
 
     componentDidMount(){
+
+        let request = JSON.parse(this.props.info.route_info)
+
         const mapStart = {
-          center: { lat: 40.775566, lng: -73.960456 },
-          zoom: 13,
+          center: request.origin,
+          zoom: 12,
+          disableDefaultUI: true
         };
+
 
         this.map = new google.maps.Map(this.mapNode, mapStart);
         const directionsRenderer = new google.maps.DirectionsRenderer({
@@ -20,6 +25,12 @@ class MiniMap extends React.Component {
         });
         const directionsService = new google.maps.DirectionsService();
         directionsRenderer.setMap(this.map);
+
+        directionsService.route(request, (result, status) => {
+          if (status == "OK") {
+            directionsRenderer.setDirections(result);
+          }
+        })
     }
 
     render(){
