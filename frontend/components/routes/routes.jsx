@@ -1,8 +1,13 @@
 import React from 'react';
-import Map from './map';
+import MiniMap from './mini_map';
 import {Link} from 'react-router-dom';
 
 class Routes extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.renderMaps = this.renderMaps.bind(this);
+  }
 
   componentDidMount(){
     this.props.getRoutes(this.props.userId);
@@ -10,9 +15,23 @@ class Routes extends React.Component {
     console.log(this.state);
   };
 
+  renderMaps(){
+      return (
+        <>
+        <div className="myMiniMaps">
+          {Object.values(this.props.routes).map((route, idx)=> (
+            <div key={`route=${idx}`}>
+              <MiniMap info={this.props.routes[idx + 1]}/>
+              <Link to='/home/routes/edit'>Edit Route</Link>
+            </div>
+          ))}
+        </div>
+        </>
+      )   
+  }
+
     render(){
-      console.log(this.props);
-      console.log(this.state);
+      console.log(Object.values(this.props.routes));
         return (
           <>
             {/* <div className="routes-real-main"> */}
@@ -25,11 +44,7 @@ class Routes extends React.Component {
                   Create New Route    
                   </Link>
                 </div>
-                {/* {this.props.} */}
-                <div className="mini-map-container">
-                  <div id="placeholder"><Map  /></div>
-                </div>
-
+                  {this.renderMaps()}
               </div>
             {/* </div> */}
           </>

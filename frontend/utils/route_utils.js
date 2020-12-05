@@ -20,6 +20,14 @@ export const createRoute = (userId, route) => {
     })
 }
 
+export const editRoute = (userId, routeId, route) => {
+    return $.ajax ({
+        url: `/api/users/${userId}/routes/${routeId}`,
+        method: 'PATCH',
+        data: {route}
+    })
+}
+
 export const destroyRoute = (userId, routeId) => {
     return $.ajax ({
         url: `/api/users/${userId}/routes/${routeId}`,

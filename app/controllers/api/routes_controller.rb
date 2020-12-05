@@ -13,6 +13,16 @@ class Api::RoutesController < ApplicationController
         end
     end
 
+    # def update
+    #     @routes = Route.all
+    #     @route = Route.find(params[:id])
+    #     if @route.update(route_params)
+    #         render :index
+    #     else
+    #         render json: @route.errors.full_messages, status 401
+    #     end
+    # end
+
     def show
         @route = Route.find(params[:id])
         render :show
