@@ -15,13 +15,16 @@ class Routes extends React.Component {
 
   renderMaps(){
       return (
+        <>
         <div className="myMiniMaps">
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`}>
               <MiniMap info={this.props.routes[idx + 1]}/>
+              <Link to='/home/routes/edit'>Edit Route</Link>
             </div>
           ))}
         </div>
+        </>
       )   
   }
 

@@ -3,6 +3,7 @@ import LoggedInNav from "./navbar/logged_in_nav";
 import {ProtectedRoute} from '../utils/front_end_route_utils';
 import Routes from './routes/my_routes_container';
 import NewRoute from './routes/new_routes_container';
+import EditRoute from './routes/edit_routes_container';
 import DashboardContainer from "./dashboard/dashboard";
 import {Switch} from 'react-router-dom';
 
@@ -14,6 +15,7 @@ export default () => {
         <Switch>
           <ProtectedRoute exact path='/home/routes' component={Routes}/>
           <ProtectedRoute exact path='/home/routes/new' component={NewRoute}/>
+          <ProtectedRoute exact path='/home/routes/edit' component={EditRoute}/>
           <ProtectedRoute  path='/home' component={DashboardContainer}/> 
         </Switch>
         </>
