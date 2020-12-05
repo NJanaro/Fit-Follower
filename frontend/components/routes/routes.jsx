@@ -6,9 +6,13 @@ class Routes extends React.Component {
 
   componentDidMount(){
     this.props.getRoutes(this.props.userId);
+    console.log(this.props);
+    console.log(this.state);
   };
 
     render(){
+      console.log(this.props);
+      console.log(this.state);
         return (
           <>
             {/* <div className="routes-real-main"> */}
@@ -21,9 +25,11 @@ class Routes extends React.Component {
                   Create New Route    
                   </Link>
                 </div>
+                {/* {this.props.} */}
                 <div className="mini-map-container">
-                  <div id="placeholder"></div>
+                  <div id="placeholder"><Map  /></div>
                 </div>
+
               </div>
             {/* </div> */}
           </>
