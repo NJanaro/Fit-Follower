@@ -12,10 +12,12 @@
 }
 
 #minimap {
+    display: flex;
     width: 250px;
     height: 350px;
-    margin: 20px;
+    margin-bottom: 10px;
 }
+
 
 #page-title {
     font-size: 32px;
@@ -23,6 +25,9 @@
     margin-bottom: 20px;
 }
 
+.miniMap{
+    margin: 20px;
+}
 
 .new-route-main {
     
@@ -52,6 +57,7 @@
 
 .myMiniMaps {
     display:flex;
+    flex-wrap: wrap;
 }
 
 .my-routes-top { 
