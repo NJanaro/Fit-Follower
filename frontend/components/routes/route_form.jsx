@@ -37,20 +37,22 @@ class RouteForm extends React.Component {
 
 
   handleSubmit(e){
-    const cb = function(err){
-      if(err){
+    const cb = function(promise){
+      if(promise){
         this.setState({redirect:true})
       }
     }.bind(this)
     
     e.preventDefault();
     this.props.processForm(this.props.userId, this.state)
-      .then((err) => cb(err));
+      .then((promise) => {
+          cb(promise)}
+        );
   }
 
   renderErrors(){
     console.log(this.props.errors)
-    if(this.props.errors){
+    if(this.props.errors.length > 0){
       return (
         <ul>
           {this.props.errors.map((error, idx)=> (
