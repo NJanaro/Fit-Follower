@@ -1,6 +1,8 @@
 import React from 'react';
 import Map from './map';
+import EditMap from './mini_map';
 import {Link, Redirect} from 'react-router-dom';
+import MiniMap from './mini_map';
 
 class RouteForm extends React.Component {
   
@@ -18,6 +20,7 @@ class RouteForm extends React.Component {
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
+    
   }
 
   handler(key, value){
@@ -63,11 +66,22 @@ class RouteForm extends React.Component {
         </ul>
       )
     }
+  };
+
+  renderMap(){
+    if(this.props.newOrEdit == "Update"){
+      debugger;
+      console.log(this.props);
+      return <Map handler = {this.handler}></Map>
+    }
+    return <Map handler = {this.handler}></Map>
   }
+
+  
 
 
     render(){
-        console.log(this.state);
+        // console.log(this.state);
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
         }
@@ -96,7 +110,7 @@ class RouteForm extends React.Component {
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
                   </div>
                   <div id="map-box">
-                    <Map handler = {this.handler}></Map>
+                    {this.renderMap()}
                   </div>
                 </div>
               </div>

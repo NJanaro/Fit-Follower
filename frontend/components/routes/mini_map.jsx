@@ -8,7 +8,7 @@ class MiniMap extends React.Component {
     }
 
     componentDidMount(){
-
+        console.log(this.props.info)
         let request = JSON.parse(this.props.info.route_info)
 
         const mapStart = {
@@ -37,7 +37,7 @@ class MiniMap extends React.Component {
         return (
             <>
               <div id="minimap" ref={(map) => (this.mapNode = map)}></div>
-            </>
+            </> 
           );
     }
 
