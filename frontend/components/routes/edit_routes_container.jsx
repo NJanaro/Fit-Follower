@@ -4,14 +4,15 @@ import { editRoute } from "../../actions/routes_actions";
 import RouteForm from "./route_form";
 
 
-const mSTP = ({ errors, session, entities }) => {
-    
+const mSTP = ({ errors, session, entities }, ownProps) => {
+    console.log(ownProps.location.state.info);
     return({
         newOrEdit:"Update",
         userId: session.currentUser.id,
         errors: errors.route,
         route: entities.route,
-        info: this.props.info
+        info: ownProps.location.state.info
+        
     });
 }
 

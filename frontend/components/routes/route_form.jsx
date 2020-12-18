@@ -70,7 +70,7 @@ class RouteForm extends React.Component {
 
   renderMap(){
     if(this.props.newOrEdit == "Update"){
-      debugger;
+
       console.log(this.props);
       return <Map handler = {this.handler}></Map>
     }
