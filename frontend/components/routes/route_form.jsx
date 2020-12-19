@@ -54,7 +54,6 @@ class RouteForm extends React.Component {
   }
 
   renderErrors(){
-    console.log(this.props.errors)
     if(this.props.errors.length > 0){
       return (
         <ul>
@@ -71,7 +70,6 @@ class RouteForm extends React.Component {
   renderMap(){
     if(this.props.newOrEdit == "Update"){
 
-      console.log(this.props);
       return <Map handler = {this.handler}></Map>
     }
     return <Map handler = {this.handler}></Map>
@@ -81,7 +79,6 @@ class RouteForm extends React.Component {
 
 
     render(){
-        // console.log(this.state);
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
         }

@@ -5,7 +5,6 @@ import RouteForm from "./route_form";
 
 
 const mSTP = ({ errors, session, entities }, ownProps) => {
-    console.log(ownProps.location.state.info);
     return({
         newOrEdit:"Update",
         userId: session.currentUser.id,

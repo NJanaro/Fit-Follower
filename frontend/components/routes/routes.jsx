@@ -11,8 +11,7 @@ class Routes extends React.Component {
 
   componentDidMount(){
     this.props.getRoutes(this.props.userId);
-    console.log(this.props);
-    console.log(this.state);
+ 
   };
 
   renderMaps(){
@@ -39,8 +38,7 @@ class Routes extends React.Component {
   }
 
     render(){
-      console.log(Object.values(this.props.routes));
-        return (
+      return (
           <>
             {/* <div className="routes-real-main"> */}
               <div className="my-routes-main">
