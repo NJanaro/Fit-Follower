@@ -9,10 +9,12 @@ class MapContainer extends React.Component {
     this.state = {
       markers: [],
     };
+
     
     this.makeMark = this.makeMark.bind(this);
     this.setMapOnAll = this.setMapOnAll.bind(this);
     this.renderMap = this.renderMap.bind(this);
+    this.deleteMark = this.deleteMark.bind(this);
   }
 
   setDistance(meters, text) {
@@ -26,19 +28,24 @@ class MapContainer extends React.Component {
   }
 
   renderMap(){
+
     const travelMode = document.getElementById("route-mode")
     const mapStart = {
       center: { lat: 40.775566, lng: -73.960456 },
       zoom: 13,
     };
 
-    this.map = new google.maps.Map(this.mapNode, mapStart);
+   
+
+
     const directionsRenderer = new google.maps.DirectionsRenderer({
       preserveViewport: true,
       suppressMarkers: true
     });
     const directionsService = new google.maps.DirectionsService();
-    directionsRenderer.setMap(this.map);
+    directionsRenderer.setMap(null);
+
+    // directionsRenderer.setMap(this.map);
 
 
       let waypoints = this.state.markers;
@@ -59,7 +66,7 @@ class MapContainer extends React.Component {
       });
   
       let origin = waypoints[0] || this.routeInfo.origin;
-      let finish = waypoints[waypoints.length - 1] || this.routeInfo.destination;
+      let finish = waypoints[waypoints.length - 1] 
       console.log(this.routeInfo)
       let request = {
         origin: origin,
@@ -67,32 +74,64 @@ class MapContainer extends React.Component {
         waypoints: stops,
         travelMode: travelMode.value || this.routeInfo.travelMode,
       };
+      console.log(request)
      
-      directionsService.route(request, (result, status) => {
-        let distance = 0
-        const legs = result.routes[0].legs;
-        const showDistance = document.getElementById("route-distance-text");
-  
-        legs.forEach(leg=>{
-          distance += leg.distance.value;
-        })
-  
-        let toMiles = (distance * 0.00062137).toFixed(2)
+      if (request.origin) {
+        directionsRenderer.setMap(null);
+
+        directionsService.route(request, (result, status) => {
+          let distance = 0
+          const legs = result.routes[0].legs;
+          const showDistance = document.getElementById("route-distance-text");
         
-        if (status == "OK") {
-          directionsRenderer.setDirections(result); //result.routes.legs.
-          // showDistance.setAttribute("value", toMiles.toString() + " Miles")
-          this.props.handler("distance", toMiles.toString() + " Miles");
-          this.props.handler("route_info", JSON.stringify(request));
-  
-        }else{
-          console.log("ERROR")
-        }
-      });
+          legs.forEach(leg=>{
+            distance += leg.distance.value;
+          })
+        
+          let toMiles = (distance * 0.00062137).toFixed(2)
+
+          if (status == "OK") {
+
+            directionsRenderer.setDirections(result); //result.routes.legs.
+            // showDistance.setAttribute("value", toMiles.toString() + " Miles")
+            this.props.handler("distance", toMiles.toString() + " Miles");
+            this.props.handler("route_info", JSON.stringify(request));
+            directionsRenderer.setMap(this.map)
+          
+          }else{
+            console.log("ERROR")
+          }
+        })
+      }else{
+        directionsRenderer.setMap(null);
+      }
+    
 
     
 
 
+  }
+
+  deleteMark(){
+
+    if (this.state.markers.length == 0) {
+      return;
+    } else {
+      const mapStart = {
+        center: { lat: 40.775566, lng: -73.960456 },
+        zoom: 13,
+      };
+    this.map = new google.maps.Map(this.mapNode, mapStart);
+      
+      this.state.markers[this.state.markers.length - 1].setMap(null);
+      this.state.markers[this.state.markers.length - 1] = null;
+
+      this.setState((oldState) => {
+        oldState.markers.pop();
+        return { markers: oldState.markers };
+        }, this.renderMap
+      );
+    }
   }
 
   makeMark(p) {
@@ -111,12 +150,12 @@ class MapContainer extends React.Component {
       {markers: state.markers.concat([marker])}
       ), this.renderMap
     );
+  
   }
 
   componentDidMount() {
 
     const travelMode = document.getElementById("route-mode");
-
 
     const mapStart = {
       center: { lat: 40.775566, lng: -73.960456 },
@@ -124,6 +163,7 @@ class MapContainer extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapStart);
+
     const directionsRenderer = new google.maps.DirectionsRenderer({
       preserveViewport: true,
       suppressMarkers: true
@@ -142,10 +182,6 @@ class MapContainer extends React.Component {
         return this.makeMark(pos)
       });
     }
-
-      
-
-
 
     travelMode.addEventListener("change", function(){
       let waypoints = this.state.markers.map((mark) => {
@@ -195,122 +231,16 @@ class MapContainer extends React.Component {
       }
     }.bind(this))
 
-    const deleteButton = document.getElementById("delete-marker");
-
-
     google.maps.event.addListener(this.map, "click", (event) => {
-      directionsRenderer.setMap(this.map);
-
       const latLng = event.latLng;
       this.makeMark(latLng);
-
-      let waypoints = this.state.markers.map((mark) => {
-        return {
-          lat: parseFloat(`${mark.position.lat()}`),
-          lng: parseFloat(`${mark.position.lng()}`),
-        };
-      });
-
-      let stops = waypoints
-
-      stops = stops.map((stop) => {
-        return { location: stop };
-      });
-
-      let origin = waypoints[0];
-      let finish = waypoints[waypoints.length - 1];
-
-      let request = {
-        origin: origin,
-        destination: finish,
-        waypoints: stops,
-        travelMode: travelMode.value,
-      };
-
-      directionsService.route(request, (result, status) => {
-        let distance = 0
-        const legs = result.routes[0].legs;
-        const showDistance = document.getElementById("route-distance-text");
-
-        legs.forEach(leg=>{
-          distance += leg.distance.value;
-        })
-
-        let toMiles = (distance * 0.00062137).toFixed(2)
-        
-        if (status == "OK") {
-          directionsRenderer.setDirections(result); //result.routes.legs.
-          // showDistance.setAttribute("value", toMiles.toString() + " Miles")
-          this.props.handler("distance", toMiles.toString() + " Miles");
-          this.props.handler("route_info", JSON.stringify(request));
-
-        }
-      });
     });
+      
+    const deleteButton = document.getElementById("delete-marker");
 
     deleteButton.addEventListener("click", function(){
-        if (this.state.markers.length == 0) {
-          return;
-        } else {
-          this.state.markers[this.state.markers.length - 1].setMap(null);
-          this.state.markers[this.state.markers.length - 1] = null;
-
-          this.setState((oldState) => {
-            oldState.markers.pop();
-            return { markers: oldState.markers };
-          });
-        }
-          let waypoints = this.state.markers.map((mark) => {
-            return {
-              lat: parseFloat(`${mark.position.lat()}`),
-              lng: parseFloat(`${mark.position.lng()}`),
-            };
-          });
-
-          let stops = waypoints
-
-          stops = stops.map((stop) => {
-            return { location: stop };
-          });
-
-          let origin = waypoints[0];
-          let finish = waypoints[waypoints.length - 1];
-
-          let request = {
-            origin: origin,
-            destination: finish,
-            waypoints: stops,
-            travelMode: travelMode.value,
-          };
-
-          if (request.origin) {
-            directionsService.route(request, (result, status) => {
-              if (status == "OK") {
-                let distance = 0
-                const legs = result.routes[0].legs;
-                const showDistance = document.getElementById("route-distance-text");
-        
-                legs.forEach(leg=>{
-                  distance += leg.distance.value;
-                })
-        
-                let toMiles = (distance * 0.00062137).toFixed(2)        
-
-                directionsRenderer.setDirections(result);
-                // showDistance.setAttribute("value", toMiles.toString() + " Miles")
-                this.props.handler("distance", toMiles.toString() + " Miles");
-                this.props.handler("route_info", JSON.stringify(request));
-
-
-
-
-              }
-            });
-          }else{   
-            directionsRenderer.setMap(null);
-          }
-        }.bind(this)
-    );
+      this.deleteMark();
+    }.bind(this));
   }
 
   render() {
