@@ -30,20 +30,20 @@ class MapContainer extends React.Component {
   renderMap(){
 
     const travelMode = document.getElementById("route-mode")
-    const mapStart = {
-      center: { lat: 40.775566, lng: -73.960456 },
-      zoom: 13,
-    };
+    // const mapStart = {
+    //   center: { lat: 40.775566, lng: -73.960456 },
+    //   zoom: 13,
+    // };
 
    
 
 
-    const directionsRenderer = new google.maps.DirectionsRenderer({
-      preserveViewport: true,
-      suppressMarkers: true
-    });
-    const directionsService = new google.maps.DirectionsService();
-    directionsRenderer.setMap(null);
+    // this.directionsRenderer = new google.maps.DirectionsRenderer({
+    //   preserveViewport: true,
+    //   suppressMarkers: true
+    // });
+    // this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer.setMap();
 
     // directionsRenderer.setMap(this.map);
 
@@ -77,9 +77,9 @@ class MapContainer extends React.Component {
       console.log(request)
      
       if (request.origin) {
-        directionsRenderer.setMap(null);
+        this.directionsRenderer.setMap(null);
 
-        directionsService.route(request, (result, status) => {
+        this.directionsService.route(request, (result, status) => {
           let distance = 0
           const legs = result.routes[0].legs;
           const showDistance = document.getElementById("route-distance-text");
@@ -92,18 +92,16 @@ class MapContainer extends React.Component {
 
           if (status == "OK") {
 
-            directionsRenderer.setDirections(result); //result.routes.legs.
+            this.directionsRenderer.setDirections(result); //result.routes.legs.
             // showDistance.setAttribute("value", toMiles.toString() + " Miles")
             this.props.handler("distance", toMiles.toString() + " Miles");
             this.props.handler("route_info", JSON.stringify(request));
-            directionsRenderer.setMap(this.map)
+            this.directionsRenderer.setMap(this.map)
           
           }else{
             console.log("ERROR")
           }
         })
-      }else{
-        directionsRenderer.setMap(null);
       }
     
 
@@ -117,11 +115,7 @@ class MapContainer extends React.Component {
     if (this.state.markers.length == 0) {
       return;
     } else {
-      const mapStart = {
-        center: { lat: 40.775566, lng: -73.960456 },
-        zoom: 13,
-      };
-    this.map = new google.maps.Map(this.mapNode, mapStart);
+      this.directionsRenderer.setMap(null)
       
       this.state.markers[this.state.markers.length - 1].setMap(null);
       this.state.markers[this.state.markers.length - 1] = null;
@@ -129,7 +123,8 @@ class MapContainer extends React.Component {
       this.setState((oldState) => {
         oldState.markers.pop();
         return { markers: oldState.markers };
-        }, this.renderMap
+      },
+      this.renderMap
       );
     }
   }
@@ -164,12 +159,12 @@ class MapContainer extends React.Component {
 
     this.map = new google.maps.Map(this.mapNode, mapStart);
 
-    const directionsRenderer = new google.maps.DirectionsRenderer({
+    this.directionsRenderer = new google.maps.DirectionsRenderer({
       preserveViewport: true,
       suppressMarkers: true
     });
-    const directionsService = new google.maps.DirectionsService();
-    directionsRenderer.setMap(this.map);
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer.setMap(this.map);
 
     
 
@@ -208,7 +203,7 @@ class MapContainer extends React.Component {
       };
 
       if (request.origin) {
-        directionsService.route(request, (result, status) => {
+        this.directionsService.route(request, (result, status) => {
           if (status == "OK") {
             let distance = 0
             const legs = result.routes[0].legs;
@@ -220,7 +215,7 @@ class MapContainer extends React.Component {
     
             let toMiles = (distance * 0.00062137).toFixed(2)        
 
-            directionsRenderer.setDirections(result);
+            this.directionsRenderer.setDirections(result);
             this.props.handler("distance", toMiles.toString() + " Miles");
             this.props.handler("route_info", JSON.stringify(request));
 
