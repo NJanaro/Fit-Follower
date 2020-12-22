@@ -20,11 +20,10 @@ const receiveRoutes = (routes) => {
     }
 }
 
-const receiveRoute = (userId, routeId) => {
+const receiveRoute = (route) => {
     return {
         type: RECEIVE_ROUTE,
-        userId,
-        routeId
+        route
     }
 }
 
@@ -43,7 +42,7 @@ export const fetchRoutes = (userId) => dispatch => (
 
 export const fetchRoute = (userId, routeId) => dispatch => (
     RouteApiUtil.fetchRoute(userId, routeId)
-        .then(() => dispatch(receiveRoute(userId, routeId)))
+        .then((route) => dispatch(receiveRoute(route)))
 )
 
 export const createRoute = (userId, route) => dispatch => {

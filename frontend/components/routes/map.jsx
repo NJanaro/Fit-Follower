@@ -28,7 +28,7 @@ class MapContainer extends React.Component {
   }
 
   renderMap(){
-
+    
     const travelMode = document.getElementById("route-mode")
     // const mapStart = {
     //   center: { lat: 40.775566, lng: -73.960456 },
@@ -49,7 +49,6 @@ class MapContainer extends React.Component {
 
 
       let waypoints = this.state.markers;
-      console.log(waypoints)
 
       waypoints = waypoints.map((mark) => {
         return {
@@ -59,7 +58,6 @@ class MapContainer extends React.Component {
       });
   
       let stops = waypoints;
-      console.log(waypoints)
   
       stops = stops.map((stop) => {
         return { location: stop };
@@ -67,14 +65,13 @@ class MapContainer extends React.Component {
   
       let origin = waypoints[0] || this.routeInfo.origin;
       let finish = waypoints[waypoints.length - 1] 
-      console.log(this.routeInfo)
       let request = {
         origin: origin,
         destination: finish,
         waypoints: stops,
         travelMode: travelMode.value || this.routeInfo.travelMode,
       };
-      console.log(request)
+      
      
       if (request.origin) {
         this.directionsRenderer.setMap(null);
@@ -168,9 +165,9 @@ class MapContainer extends React.Component {
 
     
 
-    if(this.props.location.state){
-      ;
-      this.routeInfo = JSON.parse(this.props.location.state.info.route_info);  
+    if(this.props.routes[1]){
+      console.log(this.props.routes[1])
+      this.routeInfo = JSON.parse(this.props.routes[1].route_info);  
       this.cords = Object.values(this.routeInfo.waypoints).map(loc => loc.location);
       this.cords.forEach((pos) => {
         
@@ -239,7 +236,7 @@ class MapContainer extends React.Component {
   }
 
   render() {
-
+    console.log(this.props)
     // 
     return (
       <>

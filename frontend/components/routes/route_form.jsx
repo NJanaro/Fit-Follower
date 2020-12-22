@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from './map';
+import Map from './map_container';
 import EditMap from './mini_map';
 import {Link, Redirect} from 'react-router-dom';
 import MiniMap from './mini_map';
@@ -9,17 +9,31 @@ class RouteForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    if(this.props.newOrEdit == "Update"){
+      this.state = {
+          user_id: this.props.userId,
+          route_name: this.props.route[1].route_name,
+          description:"",
+          distance:"",
+          route_info:"",
+          redirect:false
+      }
+    }else{
+      this.state = {
         user_id: this.props.userId,
-        route_name:"",
+        route_name: "",
         description:"",
         distance:"",
         route_info:"",
         redirect:false
+      }
     }
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
+
+    // this.props.getRoute(this.props.userId, this.props.route.id);
+
     
   }
 
@@ -75,10 +89,9 @@ class RouteForm extends React.Component {
     return <Map handler = {this.handler}></Map>
   }
 
-  
-
-
     render(){
+        console.log(this.props.route)
+
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
         }
@@ -89,9 +102,9 @@ class RouteForm extends React.Component {
                   <form onSubmit={this.handleSubmit}>
                     <div>{this.renderErrors()}</div>
                     <label htmlFor="route-name">Route Name</label>
-                    <input id="route-name" type="text" onChange={this.update("route_name")}/>
+                    <input id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
                     <label htmlFor="route-description">Description</label>
-                    <textarea id="route-description" onChange={this.update("description")}/>
+                    <textarea id="route-description" onChange={this.update("description")} placeholder={this.props.info ? this.props.info.description : ""}/>
                     <label htmlFor="route-mode">Travel Mode</label> <br></br>
                     <select id="route-mode">
                       <option value="WALKING">Run</option>
