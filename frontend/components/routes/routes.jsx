@@ -1,6 +1,8 @@
 import React from 'react';
 import MiniMap from './mini_map';
 import {Link} from 'react-router-dom';
+import { fetchRoute } from "../../actions/routes_actions";
+
 
 class Routes extends React.Component {
 
@@ -21,6 +23,7 @@ class Routes extends React.Component {
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`} className="miniMap">
               <MiniMap info={this.props.routes[idx + 1]}/>
+              {/* <div onClick={fetchRoute(this.getRoute(this.props.userId, (idx + 1)))}> */}
               <Link to={{
                           pathname: '/home/routes/edit',
                           state: {
@@ -28,8 +31,9 @@ class Routes extends React.Component {
                           }
                         }
                        }>
-                Edit Route
+                         Edit Route
               </Link>
+              {/* </div> */}
             </div>
           ))}
         </div>

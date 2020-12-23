@@ -35,15 +35,17 @@ const deleteRoute = (userId, routeId) => {
     }
 }
 
-export const fetchRoutes = (userId) => dispatch => (
-    RouteApiUtil.fetchRoutes(userId)
-        .then((routes) => dispatch(receiveRoutes(routes)))
-)
+export const fetchRoutes = (userId) => dispatch => {
+    return RouteApiUtil.fetchRoutes(userId)
+        .then(routes => dispatch(receiveRoutes(routes)))
+}
 
-export const fetchRoute = (userId, routeId) => dispatch => (
-    RouteApiUtil.fetchRoute(userId, routeId)
+export const fetchRoute = (userId, routeId) => dispatch => {
+    // debugger
+    return RouteApiUtil.fetchRoute(userId, routeId)
         .then((route) => dispatch(receiveRoute(route)))
-)
+}
+
 
 export const createRoute = (userId, route) => dispatch => {
     return RouteApiUtil.createRoute(userId, route)

@@ -8,6 +8,7 @@ const mSTP = ({ errors, session, entities }, ownProps) => {
     return({
         newOrEdit:"Update",
         userId: session.currentUser.id,
+        routeId: ownProps.location.state.info.id,
         errors: errors.route,
         route: entities.routes,
         // info: entities.routes.id

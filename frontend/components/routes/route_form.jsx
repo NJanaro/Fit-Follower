@@ -3,31 +3,28 @@ import Map from './map_container';
 import EditMap from './mini_map';
 import {Link, Redirect} from 'react-router-dom';
 import MiniMap from './mini_map';
+import { fetchRoute } from "../../actions/routes_actions";
+
 
 class RouteForm extends React.Component {
   
   constructor(props) {
     super(props);
-
+    
+    
     if(this.props.newOrEdit == "Update"){
-      this.state = {
-          user_id: this.props.userId,
-          route_name: this.props.route[1].route_name,
-          description:"",
-          distance:"",
-          route_info:"",
-          redirect:false
-      }
-    }else{
-      this.state = {
-        user_id: this.props.userId,
-        route_name: "",
-        description:"",
-        distance:"",
-        route_info:"",
-        redirect:false
-      }
+      this.props.getRoute(this.props.userId, this.props.routeId)
     }
+
+    this.state = {
+      user_id: this.props.userId,
+      route_name: "",
+      description:"",
+      distance:"",
+      route_info:"",
+      redirect:false
+    }
+    
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
@@ -36,6 +33,12 @@ class RouteForm extends React.Component {
 
     
   }
+
+  // componentDidMount(){
+  //   debugger
+  //   this.props.getRoute(this.props.userId, this.props.routeId);
+  // }
+
 
   handler(key, value){
     this.setState({
@@ -68,6 +71,7 @@ class RouteForm extends React.Component {
   }
 
   renderErrors(){
+
     if(this.props.errors.length > 0){
       return (
         <ul>
@@ -84,17 +88,34 @@ class RouteForm extends React.Component {
   renderMap(){
     if(this.props.newOrEdit == "Update"){
 
-      return <Map handler = {this.handler}></Map>
-    }
+      return <Map handler = {this.handler} newOrEdit = {this.props.newOrEdit}></Map>
+    }else{
     return <Map handler = {this.handler}></Map>
+    }
   }
 
+    componentDidUpdate(prevProps){
+      if (prevProps !== this.props){
+        debugger
+        this.setState({
+            user_id: this.props.userId,
+            route_name: this.props.route.route_name,
+            description: this.props.route.description,
+            distance: this.props.route.distance,
+            route_info: this.props.route.route_info,
+            redirect:false
+        })
+      }
+    }
+
     render(){
-        console.log(this.props.route)
+
 
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
         }
+  
+        
         return (
           <>
             <div className="new-route-main">
@@ -104,7 +125,7 @@ class RouteForm extends React.Component {
                     <label htmlFor="route-name">Route Name</label>
                     <input id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
                     <label htmlFor="route-description">Description</label>
-                    <textarea id="route-description" onChange={this.update("description")} placeholder={this.props.info ? this.props.info.description : ""}/>
+                    <textarea id="route-description" onChange={this.update("description")} value={this.state.description}/>
                     <label htmlFor="route-mode">Travel Mode</label> <br></br>
                     <select id="route-mode">
                       <option value="WALKING">Run</option>

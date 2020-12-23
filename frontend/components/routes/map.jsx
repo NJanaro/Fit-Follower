@@ -165,11 +165,16 @@ class MapContainer extends React.Component {
 
     
 
-    if(this.props.routes[1]){
-      console.log(this.props.routes[1])
-      this.routeInfo = JSON.parse(this.props.routes[1].route_info);  
-      this.cords = Object.values(this.routeInfo.waypoints).map(loc => loc.location);
+    if(this.props.newOrEdit == "Update"){
+      // debugger
+      this.routeInfo = JSON.parse(this.props.routes[1].route_info);
+      console.log(this.routeInfo)
+      this.cords =  Object.values(this.routeInfo.waypoints).map(loc => loc.location);
+
+      console.log(this.cords)
+
       this.cords.forEach((pos) => {
+
         
         return this.makeMark(pos)
       });
