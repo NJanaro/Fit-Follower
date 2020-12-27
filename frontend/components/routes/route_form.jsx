@@ -28,6 +28,7 @@ class RouteForm extends React.Component {
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
+    // this.setSelected = this.setSelected.bind(this);
 
     // this.props.getRoute(this.props.userId, this.props.route.id);
 
@@ -85,6 +86,17 @@ class RouteForm extends React.Component {
     }
   };
 
+  // setSelected(select, val){
+  //   debugger
+  //   for (let i = 0; i < select.options.length - 1; i++) {
+  //     if (select.options[i].value == val) {
+  //       select.options[i].selected = true;
+  //       break;
+  //     }
+  //     return;
+  //   };
+  // }
+
   renderMap(){
     if(this.props.newOrEdit == "Update"){
 
@@ -96,7 +108,8 @@ class RouteForm extends React.Component {
 
     componentDidUpdate(prevProps){
       if (prevProps !== this.props){
-        debugger
+        this.routeDetails = JSON.parse(this.props.route.route_info);
+        // this.setSelected(document.getElementById("route-mode"), this.routeInfo.travelMode);
         this.setState({
             user_id: this.props.userId,
             route_name: this.props.route.route_name,
@@ -104,15 +117,18 @@ class RouteForm extends React.Component {
             distance: this.props.route.distance,
             route_info: this.props.route.route_info,
             redirect:false
-        })
+          })
       }
     }
+
 
     render(){
 
 
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
+        }else if(!this.routeDetails){
+          return null;
         }
   
         
@@ -127,10 +143,11 @@ class RouteForm extends React.Component {
                     <label htmlFor="route-description">Description</label>
                     <textarea id="route-description" onChange={this.update("description")} value={this.state.description}/>
                     <label htmlFor="route-mode">Travel Mode</label> <br></br>
-                    <select id="route-mode">
+                    <select defaultValue={this.routeDetails.travelMode} id="route-mode">
                       <option value="WALKING">Run</option>
                       <option value="BICYCLING">Bike</option>
-                    </select><br></br>
+                    </select>
+                    <br></br>
                     <label htmlFor="route-distance-text">Distance</label>
                     <input id="route-distance-text" onChange={this.update("distance")} type="text" disabled={true} value={this.state.distance}/>
                   </form>

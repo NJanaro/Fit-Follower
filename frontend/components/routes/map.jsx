@@ -166,8 +166,8 @@ class MapContainer extends React.Component {
     
 
     if(this.props.newOrEdit == "Update"){
-      // debugger
-      this.routeInfo = JSON.parse(this.props.routes[1].route_info);
+      debugger
+      this.routeInfo = JSON.parse(this.props.routes.route_info);
       console.log(this.routeInfo)
       this.cords =  Object.values(this.routeInfo.waypoints).map(loc => loc.location);
 
