@@ -25,6 +25,7 @@ class RouteForm extends React.Component {
       redirect:false
     }
     
+    this.routeDetails = {travelMode: "Walking"};
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
@@ -118,6 +119,7 @@ class RouteForm extends React.Component {
             route_info: this.props.route.route_info,
             redirect:false
           })
+          this.updated = true;
       }
     }
 
@@ -127,7 +129,7 @@ class RouteForm extends React.Component {
 
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
-        }else if(!this.routeDetails){
+        }else if(this.props.newOrEdit == "Update" && !this.updated){
           return null;
         }
   
