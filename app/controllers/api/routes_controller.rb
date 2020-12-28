@@ -1,10 +1,10 @@
 class Api::RoutesController < ApplicationController
     def index
-        @routes = Route.all
+        @routes = current_user.routes
     end
 
     def create
-        @routes = Route.all
+        @routes = current_user.routes
         @route = Route.new(route_params)
         if @route.save
             render :index
@@ -13,15 +13,15 @@ class Api::RoutesController < ApplicationController
         end
     end
 
-    # def update
-    #     @routes = Route.all
-    #     @route = Route.find(params[:id])
-    #     if @route.update(route_params)
-    #         render :index
-    #     else
-    #         render json: @route.errors.full_messages, status 401
-    #     end
-    # end
+    def update
+        @routes = Route.all
+        @route = Route.find(params[:id])
+        if @route.update(route_params)
+            render :index
+        else
+            render json: @route.errors.full_messages, status: 401
+        end
+    end
 
     def show
         @route = Route.find(params[:id])
@@ -32,6 +32,8 @@ class Api::RoutesController < ApplicationController
         @route = Route.find(params[:id])
         if @route
             @route.destroy
+            @routes = current_user.routes
+            render :index
         else
             render json: ["Route doesn't exist"], status: 400
         end

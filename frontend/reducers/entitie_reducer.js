@@ -4,6 +4,6 @@ import routeReducer from './route_reducer';
 
 
 export default combineReducers({
-    users:usersReducer,
+    // users:usersReducer,
     routes:routeReducer
 })

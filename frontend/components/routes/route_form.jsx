@@ -1,25 +1,35 @@
 import React from 'react';
-import Map from './map';
+import Map from './map_container';
 import EditMap from './mini_map';
 import {Link, Redirect} from 'react-router-dom';
 import MiniMap from './mini_map';
+import { fetchRoute } from "../../actions/routes_actions";
+
 
 class RouteForm extends React.Component {
   
   constructor(props) {
     super(props);
+    
+    
+    if(this.props.newOrEdit == "Update"){
+      this.props.getRoute(this.props.userId, this.props.routeId)
+    }
 
     this.state = {
-        user_id: this.props.userId,
-        route_name:"",
-        description:"",
-        distance:"",
-        route_info:"",
-        redirect:false
+      user_id: this.props.userId,
+      route_name: "",
+      description:"",
+      distance:"",
+      route_info:"",
+      redirect:false
     }
+    
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
+    this.renderDelete = this.renderDelete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     
   }
 
@@ -40,20 +50,45 @@ class RouteForm extends React.Component {
 
 
   handleSubmit(e){
-    const cb = function(err){
-      if(err){
+    const cb = function(promise){
+      if(promise){
         this.setState({redirect:true})
       }
     }.bind(this)
     
     e.preventDefault();
-    this.props.processForm(this.props.userId, this.state)
-      .then((err) => cb(err));
+    if (this.props.newOrEdit == "Save"){
+      this.props.processForm(this.props.userId, this.state)
+        .then((promise) => {
+            cb(promise)}
+          );
+    }else if(this.props.newOrEdit == "Update"){
+      this.props.processForm(this.props.userId, this.props.routeId, this.state)
+        .then((promise) => {
+            cb(promise)
+        });
+    }
+  }
+
+  handleDelete(e){
+    const cb = function(promise){
+      if(promise){
+        this.setState({redirect:true})
+      }
+    }.bind(this)
+
+    e.preventDefault();
+
+    this.props.deleteRoute(this.props.userId, this.props.routeId)
+      .then((promise) => {
+        cb(promise)
+        });
+
   }
 
   renderErrors(){
-    console.log(this.props.errors)
-    if(this.props.errors){
+
+    if(this.props.errors.length > 0){
       return (
         <ul>
           {this.props.errors.map((error, idx)=> (
@@ -66,23 +101,50 @@ class RouteForm extends React.Component {
     }
   };
 
-  renderMap(){
-    if(this.props.newOrEdit == "Update"){
-      debugger;
-      console.log(this.props);
-      return <Map handler = {this.handler}></Map>
+  renderDelete(){
+    if (this.props.deleteRoute){
+    return <div id="delete-route" onClick={this.handleDelete}>Delete Route</div>;
     }
-    return <Map handler = {this.handler}></Map>
   }
 
-  
+    componentDidMount(){
+      if(this.props.newOrEdit == "Save")this.routeDetails = {travelMode: "Walking"};
+      this.forceUpdate();
+    }
+
+    componentDidUpdate(prevProps){
+      if (prevProps !== this.props){
+        if (this.props.route.route_info){
+          this.routeDetails = JSON.parse(this.props.route.route_info);
+        }else{
+          this.routeDetails = {travelMode: "Walking"};
+        }
+        // this.setSelected(document.getElementById("route-mode"), this.routeInfo.travelMode);
+        this.setState({
+            user_id: this.props.userId,
+            route_name: this.props.route.route_name,
+            description: this.props.route.description,
+            distance: this.props.route.distance,
+            route_info: this.props.route.route_info,
+            redirect:false
+          })
+          this.updated = true;
+      }
+    }
 
 
     render(){
-        // console.log(this.state);
+
+
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
+        }else if(this.props.newOrEdit == "Update" && !this.updated){
+          return null;
+        }else if(!this.routeDetails){
+          return null;
         }
+  
+        
         return (
           <>
             <div className="new-route-main">
@@ -90,29 +152,30 @@ class RouteForm extends React.Component {
                   <form onSubmit={this.handleSubmit}>
                     <div>{this.renderErrors()}</div>
                     <label htmlFor="route-name">Route Name</label>
-                    <input id="route-name" type="text" onChange={this.update("route_name")}/>
+                    <input id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
                     <label htmlFor="route-description">Description</label>
-                    <textarea id="route-description" onChange={this.update("description")}/>
+                    <textarea id="route-description" onChange={this.update("description")} value={this.state.description}/>
                     <label htmlFor="route-mode">Travel Mode</label> <br></br>
-                    <select id="route-mode">
+                    <select defaultValue={this.routeDetails.travelMode} id="route-mode">
                       <option value="WALKING">Run</option>
                       <option value="BICYCLING">Bike</option>
-                    </select><br></br>
+                    </select>
+                    <br></br>
                     <label htmlFor="route-distance-text">Distance</label>
                     <input id="route-distance-text" onChange={this.update("distance")} type="text" disabled={true} value={this.state.distance}/>
                   </form>
                 </div>
                 <div id="map-main">
                   <div className="new-edit-bar">
-                    <div id="delete-marker">Delete Marker</div>
+                    {this.renderDelete()}
+                    <div id="delete-marker">Remove Marker</div>
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
                   </div>
                   <div id="map-box">
-                    {this.renderMap()}
+                  <Map handler = {this.handler} newOrEdit = {this.props.newOrEdit}></Map>
                   </div>
                 </div>
               </div>
-            {/* </div> */}
           </>
         );
     }

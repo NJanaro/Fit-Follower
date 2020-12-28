@@ -20,11 +20,10 @@ const receiveRoutes = (routes) => {
     }
 }
 
-const receiveRoute = (userId, routeId) => {
+const receiveRoute = (route) => {
     return {
         type: RECEIVE_ROUTE,
-        userId,
-        routeId
+        route
     }
 }
 
@@ -36,15 +35,16 @@ const deleteRoute = (userId, routeId) => {
     }
 }
 
-export const fetchRoutes = (userId) => dispatch => (
-    RouteApiUtil.fetchRoutes(userId)
-        .then((routes) => dispatch(receiveRoutes(routes)))
-)
+export const fetchRoutes = (userId) => dispatch => {
+    return RouteApiUtil.fetchRoutes(userId)
+        .then(routes => dispatch(receiveRoutes(routes)))
+}
 
-export const fetchRoute = (userId, routeId) => dispatch => (
-    RouteApiUtil.fetchRoute(userId, routeId)
-        .then(() => dispatch(receiveRoute(userId, routeId)))
-)
+export const fetchRoute = (userId, routeId) => dispatch => {
+    return RouteApiUtil.fetchRoute(userId, routeId)
+        .then((route) => dispatch(receiveRoute(route)))
+}
+
 
 export const createRoute = (userId, route) => dispatch => {
     return RouteApiUtil.createRoute(userId, route)
@@ -61,6 +61,6 @@ export const editRoute = (userId, routeId, route) => dispatch =>{
 }
 
 export const destroyRoute = (userId, routeId) => dispatch => (
-    ApiUtil.destroyRoute(userId, routeId)
-        .then(() => dispatch(receiveRoutes(userId)))
+    RouteApiUtil.destroyRoute(userId, routeId)
+        .then((routes) => dispatch(receiveRoutes(routes)))
 )

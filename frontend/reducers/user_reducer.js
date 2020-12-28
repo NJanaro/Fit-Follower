@@ -5,7 +5,8 @@ const initialState = {}
 export default (state = initialState, action) => {
   switch (action.type) {
   case RECEIVE_CURRENT_USER:
-    return Object.assign({}, state, {[action.user.id]:action.user})
+    // return Object.assign({}, state, {[action.user.id]:action.user})
+    return {[action.user.id]:action.user}
   default:
     return state
   }

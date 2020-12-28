@@ -12,10 +12,12 @@
 }
 
 #minimap {
+    display: flex;
     width: 250px;
     height: 350px;
-    margin: 20px;
+    margin-bottom: 10px;
 }
+
 
 #page-title {
     font-size: 32px;
@@ -23,6 +25,9 @@
     margin-bottom: 20px;
 }
 
+.miniMap{
+    margin: 20px;
+}
 
 .new-route-main {
     
@@ -52,6 +57,7 @@
 
 .myMiniMaps {
     display:flex;
+    flex-wrap: wrap;
 }
 
 .my-routes-top { 
@@ -86,7 +92,25 @@
     transition: .3s;
 }
 
+#delete-route{
+    margin-right: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 30px;
+    border: solid 1px rgb(228, 228, 228);
+    border-radius: 8px;
+    background-color: rgb(231, 231, 231);
+    transition: .3s;   
+}
+
 #delete-marker:hover {
+    cursor: default;
+    background-color: rgb(202, 202, 202);
+}
+
+#delete-route:hover {
     cursor: default;
     background-color: rgb(202, 202, 202);
 }
