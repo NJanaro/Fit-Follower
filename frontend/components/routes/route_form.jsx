@@ -119,13 +119,13 @@ class RouteForm extends React.Component {
         }else{
           this.routeDetails = {travelMode: "Walking"};
         }
-        // this.setSelected(document.getElementById("route-mode"), this.routeInfo.travelMode);
+   
         this.setState({
             user_id: this.props.userId,
             route_name: this.props.route.route_name,
             description: this.props.route.description,
             distance: this.props.route.distance,
-            route_info: this.props.route.route_info,
+            route_info: this.routeDetails,
             redirect:false
           })
           this.updated = true;
