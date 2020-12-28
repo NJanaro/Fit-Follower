@@ -74,9 +74,7 @@ class MapContainer extends React.Component {
           this.props.handler("distance", toMiles.toString() + " Miles");
           this.props.handler("route_info", JSON.stringify(request));
           this.directionsRenderer.setMap(this.map);
-        } else {
-          console.log("ERROR");
-        }
+        } 
       });
     }
   }
@@ -128,12 +126,9 @@ class MapContainer extends React.Component {
 
     if (this.props.newOrEdit == "Update") {
       this.routeInfo = JSON.parse(this.props.routes.route_info);
-      console.log(this.routeInfo);
       this.cords = Object.values(this.routeInfo.waypoints).map(
         (loc) => loc.location
       );
-
-      console.log(this.cords);
 
       this.cords.forEach((pos) => {
         return this.makeMark(pos);
@@ -206,8 +201,6 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    //
     return (
       <>
         <div id="map-main" ref={(map) => (this.mapNode = map)}></div>

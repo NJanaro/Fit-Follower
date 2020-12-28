@@ -28,7 +28,6 @@ class Routes extends React.Component {
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`} className="miniMap">
               <MiniMap info={route}/>
-              {/* <div onClick={fetchRoute(this.getRoute(this.props.userId, (idx + 1)))}> */}
               <Link to={{
                           pathname: '/home/routes/edit',
                           state: {
@@ -38,6 +37,7 @@ class Routes extends React.Component {
                        }>
                          Edit Route
               </Link>
+              <div>{route.route_name}</div>
               {/* </div> */}
             </div>
           ))}
