@@ -114,7 +114,7 @@ class RouteForm extends React.Component {
 
   componentDidUpdate(prevProps){
     if (prevProps !== this.props){
-      if(!this.updated){
+      if(!this.updated && this.props.newOrEdit == "Update"){
         this.routeDetails = JSON.parse(this.props.route.route_info);
       }else{
         this.routeDetails = {travelMode: "Walking"};
