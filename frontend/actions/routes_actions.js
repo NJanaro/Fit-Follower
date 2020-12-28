@@ -41,7 +41,6 @@ export const fetchRoutes = (userId) => dispatch => {
 }
 
 export const fetchRoute = (userId, routeId) => dispatch => {
-    // debugger
     return RouteApiUtil.fetchRoute(userId, routeId)
         .then((route) => dispatch(receiveRoute(route)))
 }

@@ -28,18 +28,8 @@ class RouteForm extends React.Component {
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
-    // this.setSelected = this.setSelected.bind(this);
-
-    // this.props.getRoute(this.props.userId, this.props.route.id);
-
     
   }
-
-  // componentDidMount(){
-  //   debugger
-  //   this.props.getRoute(this.props.userId, this.props.routeId);
-  // }
-
 
   handler(key, value){
     this.setState({

@@ -1,10 +1,10 @@
 class Api::RoutesController < ApplicationController
     def index
-        @routes = Route.all
+        @routes = current_user.routes
     end
 
     def create
-        @routes = Route.all
+        @routes = current_user.routes
         @route = Route.new(route_params)
         if @route.save
             render :index

@@ -8,13 +8,18 @@ class Routes extends React.Component {
 
   constructor(props){
     super(props);
+    this.props.getRoutes(this.props.userId);
+    this.state = {
+      updated:false
+    }
     this.renderMaps = this.renderMaps.bind(this);
   }
-
-  componentDidMount(){
-    this.props.getRoutes(this.props.userId);
- 
-  };
+  
+  componentDidUpdate(oldProps){
+    if(oldProps != this.props){
+      this.setState({updated: true})
+    }
+  }
 
   renderMaps(){
       return (
@@ -22,12 +27,12 @@ class Routes extends React.Component {
         <div className="myMiniMaps">
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`} className="miniMap">
-              <MiniMap info={this.props.routes[idx + 1]}/>
+              <MiniMap info={route}/>
               {/* <div onClick={fetchRoute(this.getRoute(this.props.userId, (idx + 1)))}> */}
               <Link to={{
                           pathname: '/home/routes/edit',
                           state: {
-                            info: this.props.routes[idx + 1]
+                            info: route
                           }
                         }
                        }>
@@ -42,6 +47,9 @@ class Routes extends React.Component {
   }
 
     render(){
+      if(!this.props.routes[1] && this.state.updated == false) {
+        return null;
+      }
       return (
           <>
             {/* <div className="routes-real-main"> */}
