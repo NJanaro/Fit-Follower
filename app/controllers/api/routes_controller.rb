@@ -32,6 +32,8 @@ class Api::RoutesController < ApplicationController
         @route = Route.find(params[:id])
         if @route
             @route.destroy
+            @routes = current_user.routes
+            render :index
         else
             render json: ["Route doesn't exist"], status: 400
         end

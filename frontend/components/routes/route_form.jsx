@@ -28,6 +28,8 @@ class RouteForm extends React.Component {
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
+    this.renderDelete = this.renderDelete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     
   }
 
@@ -63,9 +65,25 @@ class RouteForm extends React.Component {
     }else if(this.props.newOrEdit == "Update"){
       this.props.processForm(this.props.userId, this.props.routeId, this.state)
         .then((promise) => {
-            cb(promise)}
-          );
+            cb(promise)
+        });
     }
+  }
+
+  handleDelete(e){
+    const cb = function(promise){
+      if(promise){
+        this.setState({redirect:true})
+      }
+    }.bind(this)
+
+    e.preventDefault();
+
+    this.props.deleteRoute(this.props.userId, this.props.routeId)
+      .then((promise) => {
+        cb(promise)
+        });
+
   }
 
   renderErrors(){
@@ -82,6 +100,12 @@ class RouteForm extends React.Component {
       )
     }
   };
+
+  renderDelete(){
+    if (this.props.deleteRoute){
+    return <div id="delete-route" onClick={this.handleDelete}>Delete Route</div>;
+    }
+  }
 
     componentDidMount(){
       if(this.props.newOrEdit == "Save")this.routeDetails = {travelMode: "Walking"};
@@ -143,7 +167,8 @@ class RouteForm extends React.Component {
                 </div>
                 <div id="map-main">
                   <div className="new-edit-bar">
-                    <div id="delete-marker">Delete Marker</div>
+                    {this.renderDelete()}
+                    <div id="delete-marker">Remove Marker</div>
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
                   </div>
                   <div id="map-box">

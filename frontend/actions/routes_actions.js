@@ -61,6 +61,6 @@ export const editRoute = (userId, routeId, route) => dispatch =>{
 }
 
 export const destroyRoute = (userId, routeId) => dispatch => (
-    ApiUtil.destroyRoute(userId, routeId)
-        .then(() => dispatch(receiveRoutes(userId)))
+    RouteApiUtil.destroyRoute(userId, routeId)
+        .then((routes) => dispatch(receiveRoutes(routes)))
 )
