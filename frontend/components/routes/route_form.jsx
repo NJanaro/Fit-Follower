@@ -25,7 +25,6 @@ class RouteForm extends React.Component {
       redirect:false
     }
     
-    this.routeDetails = {travelMode: "Walking"};
     this.redirect = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handler = this.handler.bind(this);
@@ -66,10 +65,17 @@ class RouteForm extends React.Component {
     }.bind(this)
     
     e.preventDefault();
-    this.props.processForm(this.props.userId, this.state)
-      .then((promise) => {
-          cb(promise)}
-        );
+    if (this.props.newOrEdit == "Save"){
+      this.props.processForm(this.props.userId, this.state)
+        .then((promise) => {
+            cb(promise)}
+          );
+    }else if(this.props.newOrEdit == "Update"){
+      this.props.processForm(this.props.userId, this.props.routeId, this.state)
+        .then((promise) => {
+            cb(promise)}
+          );
+    }
   }
 
   renderErrors(){
@@ -87,29 +93,18 @@ class RouteForm extends React.Component {
     }
   };
 
-  // setSelected(select, val){
-  //   debugger
-  //   for (let i = 0; i < select.options.length - 1; i++) {
-  //     if (select.options[i].value == val) {
-  //       select.options[i].selected = true;
-  //       break;
-  //     }
-  //     return;
-  //   };
-  // }
-
-  renderMap(){
-    if(this.props.newOrEdit == "Update"){
-
-      return <Map handler = {this.handler} newOrEdit = {this.props.newOrEdit}></Map>
-    }else{
-    return <Map handler = {this.handler}></Map>
+    componentDidMount(){
+      if(this.props.newOrEdit == "Save")this.routeDetails = {travelMode: "Walking"};
+      this.forceUpdate();
     }
-  }
 
     componentDidUpdate(prevProps){
       if (prevProps !== this.props){
-        this.routeDetails = JSON.parse(this.props.route.route_info);
+        if (this.props.route.route_info){
+          this.routeDetails = JSON.parse(this.props.route.route_info);
+        }else{
+          this.routeDetails = {travelMode: "Walking"};
+        }
         // this.setSelected(document.getElementById("route-mode"), this.routeInfo.travelMode);
         this.setState({
             user_id: this.props.userId,
@@ -130,6 +125,8 @@ class RouteForm extends React.Component {
         if (this.state.redirect){
           return <Redirect to='/home/routes'/>;
         }else if(this.props.newOrEdit == "Update" && !this.updated){
+          return null;
+        }else if(!this.routeDetails){
           return null;
         }
   
@@ -160,11 +157,10 @@ class RouteForm extends React.Component {
                     <div id="saveOrUpdate" onClick={this.handleSubmit}>{this.props.newOrEdit}</div>
                   </div>
                   <div id="map-box">
-                    {this.renderMap()}
+                  <Map handler = {this.handler} newOrEdit = {this.props.newOrEdit}></Map>
                   </div>
                 </div>
               </div>
-            {/* </div> */}
           </>
         );
     }
