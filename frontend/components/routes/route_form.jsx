@@ -57,7 +57,9 @@ class RouteForm extends React.Component {
     }.bind(this)
     
     e.preventDefault();
+    // let info = JSON.stringify(this.state)
     if (this.props.newOrEdit == "Save"){
+
       this.props.processForm(this.props.userId, this.state)
         .then((promise) => {
             cb(promise)}
