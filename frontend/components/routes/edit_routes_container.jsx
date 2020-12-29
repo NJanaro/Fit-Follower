@@ -6,7 +6,6 @@ import RouteForm from "./route_form";
 
 const mSTP = ({ errors, session, entities }, ownProps) => {
     let routeId;
-    debugger
     ownProps.location.state ? routeId = ownProps.location.state.info.id : routeId =entities.routes.id;
     return({
         newOrEdit:"Update",
