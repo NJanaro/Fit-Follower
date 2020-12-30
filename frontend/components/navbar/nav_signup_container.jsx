@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 import NavBar from './navbar';
 import {logout} from '../../actions/sessions_actions';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import NavLoginContainer from './nav_login_container';
 import {createUser} from '../../actions/users_actions';
 
@@ -20,4 +20,4 @@ const mDTP = (dispatch) => ({
   processForm: (user) => dispatch(createUser(user))
 });
 
-export default connect(mSTP, mDTP)(NavBar);
+export default withRouter(connect(mSTP, mDTP)(NavBar));

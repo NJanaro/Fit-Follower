@@ -13,10 +13,11 @@ import Home from './components/home'
 class App extends React.Component {
 
     render(){
-        const NavBar = withRouter(NavLoginContainer)
+        debugger
+        // const NavBar = NavLoginContainer
         return(
             <>
-            <NavBar/>
+            <NavLoginContainer/>
             <Switch>
                 <ProtectedRoute path='/home' component={Home}/> 
                 <AuthRoute exact path='/login' component={LoginUserContainer}/>
@@ -28,4 +29,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withRouter(App);

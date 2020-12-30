@@ -1,7 +1,7 @@
 import React from 'react';
 import Map from './map_container';
 import EditMap from './mini_map';
-import {Link, Redirect, withRouter} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import MiniMap from './mini_map';
 import { fetchRoute } from "../../actions/routes_actions";
 
@@ -182,4 +182,4 @@ class RouteForm extends React.Component {
     }
 }
 
-export default withRouter(RouteForm);
+export default RouteForm;

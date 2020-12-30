@@ -1,6 +1,6 @@
 import React from 'react';
 import MiniMap from './mini_map';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { fetchRoute } from "../../actions/routes_actions";
 
 
@@ -47,6 +47,7 @@ class Routes extends React.Component {
   }
 
     render(){
+      // debugger
       if(!this.props.routes[1] && this.state.updated == false) {
         return null;
       }
@@ -70,4 +71,4 @@ class Routes extends React.Component {
     }
 }
 
-export default withRouter(Routes);
+export default Routes;

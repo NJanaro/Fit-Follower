@@ -43,4 +43,4 @@ class MiniMap extends React.Component {
 
 } 
 
-export default MiniMap;
+export default withRouter(MiniMap);

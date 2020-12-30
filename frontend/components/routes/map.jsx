@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { withRouter } from "react-router-dom";
+
 
 class MapContainer extends React.Component {
   constructor(props) {
@@ -209,4 +209,4 @@ class MapContainer extends React.Component {
   }
 }
 
-export default withRouter(MapContainer);
+export default MapContainer;
