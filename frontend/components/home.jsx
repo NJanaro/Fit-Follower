@@ -8,7 +8,6 @@ import DashboardContainer from "./dashboard/dashboard";
 import {Switch, withRouter} from 'react-router-dom';
 
 const Home = () => {
-  debugger
     return(
         <>
           <ProtectedRoute path='/home' component={LoggedInNav}/>

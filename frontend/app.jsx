@@ -13,7 +13,7 @@ import Home from './components/home'
 class App extends React.Component {
 
     render(){
-        debugger
+
         // const NavBar = NavLoginContainer
         return(
             <>

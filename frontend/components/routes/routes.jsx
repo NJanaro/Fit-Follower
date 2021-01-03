@@ -27,7 +27,7 @@ class Routes extends React.Component {
         <div className="myMiniMaps">
           {Object.values(this.props.routes).map((route, idx)=> (
             <div key={`route=${idx}`} className="miniMap">
-              <MiniMap info={route}/>
+              {/* <MiniMap info={route}/> */}
               <Link to={{
                           pathname: '/home/routes/edit',
                           state: {
@@ -35,7 +35,9 @@ class Routes extends React.Component {
                           }
                         }
                        }>
-                         Edit Route
+                         <span>
+                          <MiniMap info={route}/>
+                         </span>
               </Link>
               <div>{route.route_name}</div>
               {/* </div> */}
@@ -47,7 +49,7 @@ class Routes extends React.Component {
   }
 
     render(){
-      // debugger
+
       if(!this.props.routes[1] && this.state.updated == false) {
         return null;
       }

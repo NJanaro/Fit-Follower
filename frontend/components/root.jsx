@@ -12,7 +12,6 @@ class Root extends React.Component{
     }
 
     render(){
-      // debugger
         return (
           <>
             <Provider store={this.props.store.store}>

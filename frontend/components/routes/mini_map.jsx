@@ -12,15 +12,34 @@ class MiniMap extends React.Component {
 
         const mapStart = {
           center: request.origin,
-          zoom: 12,
-          disableDefaultUI: true
+          draggable: false,
+          disableDefaultUI: true,
         };
-
+        
+        let markers = Object.values(request.waypoints)
+        this.markers = markers.reduce((acc, red) => {
+           let accArr = Object.values(acc);
+           return accArr.concat(Object.values(red))
+        })
+        
 
         this.map = new google.maps.Map(this.mapNode, mapStart);
+        this.bounds = new google.maps.LatLngBounds();
+        
+        for (let i = 0; i < this.markers.length; i++) {
+          // debugger;
+          this.bounds.extend(this.markers[i]);
+          
+        }
+        
+
+        this.map.setCenter(this.bounds.getCenter());
+        this.map.fitBounds(this.bounds);
+
         const directionsRenderer = new google.maps.DirectionsRenderer({
           preserveViewport: true,
-          suppressMarkers: true
+          suppressMarkers: true,
+          suppressBicyclingLayer: true,
         });
         const directionsService = new google.maps.DirectionsService();
         directionsRenderer.setMap(this.map);

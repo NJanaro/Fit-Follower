@@ -9,21 +9,7 @@ class LoggedInNav extends React.Component {
   }
 
   render() {
-    // const classN =
-    //   this.props.location.pathname === "/signup"
-    //     ? "login-button"
-    //     : this.props.location.pathname === "/"
-    //     ? "login-button"
-    //     : "sign-up-button";
-    // const pathName =
-    //   this.props.location.pathname === "/signup"
-    //     ? "/login"
-    //     : this.props.location.pathname === "/"
-    //     ? "/login"
-    //     : "/signup";
-    // const buttonText =
-    //   this.props.location.pathname === "/login" ? "Sign Up" : "Log In";
-    //   debugger
+
     return (
       <nav className="navbar-box">
         <div className="navbar-left">
