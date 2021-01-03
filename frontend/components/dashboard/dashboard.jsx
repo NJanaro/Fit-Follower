@@ -1,5 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom'
+import { withRouter } from 'react-router-dom';
+
 
 class Dashboard extends React.Component {
 
@@ -18,5 +20,5 @@ class Dashboard extends React.Component {
 
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
 

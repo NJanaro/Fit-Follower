@@ -5,10 +5,9 @@ import Routes from './routes/my_routes_container';
 import NewRoute from './routes/new_routes_container';
 import EditRoute from './routes/edit_routes_container';
 import DashboardContainer from "./dashboard/dashboard";
-import {Switch} from 'react-router-dom';
+import {Switch, withRouter} from 'react-router-dom';
 
-export default () => {
-
+const Home = () => {
     return(
         <>
           <ProtectedRoute path='/home' component={LoggedInNav}/>
@@ -22,3 +21,5 @@ export default () => {
     )
 
 } 
+
+export default withRouter(Home);

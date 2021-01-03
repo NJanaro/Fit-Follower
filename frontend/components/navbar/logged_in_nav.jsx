@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {logout} from '../../actions/sessions_actions';
 import {connect} from 'react-redux';
 
@@ -9,20 +9,7 @@ class LoggedInNav extends React.Component {
   }
 
   render() {
-    const classN =
-      this.props.location.pathname === "/signup"
-        ? "login-button"
-        : this.props.location.pathname === "/"
-        ? "login-button"
-        : "sign-up-button";
-    const pathName =
-      this.props.location.pathname === "/signup"
-        ? "/login"
-        : this.props.location.pathname === "/"
-        ? "/login"
-        : "/signup";
-    const buttonText =
-      this.props.location.pathname === "/login" ? "Sign Up" : "Log In";
+
     return (
       <nav className="navbar-box">
         <div className="navbar-left">
@@ -60,8 +47,9 @@ class LoggedInNav extends React.Component {
 }
 
 
+
 const mDTP = dispatch => ({
   logout: () => dispatch(logout())
 })
 
-export default connect(null, mDTP)(LoggedInNav)
+export default withRouter(connect(null, mDTP)(LoggedInNav))

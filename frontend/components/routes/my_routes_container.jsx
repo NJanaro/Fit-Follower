@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Routes from './routes';
 import {fetchRoutes} from '../../actions/routes_actions'
@@ -12,4 +13,4 @@ const mDTP = (dispatch) => ({
     getRoutes: (userId) => dispatch(fetchRoutes(userId))
 });
 
-export default connect(mSTP, mDTP)(Routes)
+export default withRouter(connect(mSTP, mDTP)(Routes));

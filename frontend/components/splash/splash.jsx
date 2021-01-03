@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 class Splash extends React.Component {
@@ -57,4 +57,4 @@ class Splash extends React.Component {
     }
 }
 
-export default Splash;
+export default withRouter(Splash);

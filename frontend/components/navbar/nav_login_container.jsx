@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from './navbar';
 import { logout } from "../../actions/sessions_actions";
@@ -20,4 +20,4 @@ const mDTP = (dispatch) => ({
     logout: () => dispatch(logout()),
 });
 
-export default connect(mSTP, mDTP)(NavBar);
+export default withRouter(connect(mSTP, mDTP)(NavBar));

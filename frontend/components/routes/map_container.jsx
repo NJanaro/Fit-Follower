@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Map from './map';
 
 const mSTP = ({ errors, session, entities }) => ({
@@ -8,4 +9,4 @@ const mSTP = ({ errors, session, entities }) => ({
     routes: entities.routes
 })
 
-export default connect(mSTP, null)(Map);
+export default withRouter(connect(mSTP, null)(Map));
