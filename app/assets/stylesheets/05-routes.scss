@@ -15,7 +15,7 @@
     display: flex;
     width: 250px;
     height: 350px;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 
@@ -26,8 +26,56 @@
 }
 
 .miniMap{
-    margin: 20px;
+    margin: 18px;
+    width: 250px;
+    // background-color: #F7F7F7;
+    height: auto;
 }
+
+.routeInfo{
+    background-color: #F7F7F7;
+    display:flex;
+    // justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.routeInfo-spec{
+    font-size: 22px;
+    margin: 5px 0px 2px 18px; 
+    color: #242A3B;
+}
+
+.routeInfo-time{
+    display:flex;
+    align-items: center;
+    height: 30px;
+    width:100%;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 0px 0px 0px 18px; 
+    color: #242A3B;
+    background-color: #F0F0F0;
+}
+
+.type{
+    margin-top: 2px;
+    font-size: 14px;
+    color: grey;
+}
+.routeName{
+    padding: 15px;
+    color: #007FBC;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.routeName:hover{
+    text-decoration: underline;
+}
+
 
 
 .new-route-main {
