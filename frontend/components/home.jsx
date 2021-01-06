@@ -5,6 +5,7 @@ import Routes from './routes/my_routes_container';
 import NewRoute from './routes/new_routes_container';
 import EditRoute from './routes/edit_routes_container';
 import DashboardContainer from "./dashboard/dashboard";
+import Workouts from "./workouts/workouts";
 import {Switch, withRouter} from 'react-router-dom';
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
           <ProtectedRoute exact path='/home/routes' component={Routes}/>
           <ProtectedRoute exact path='/home/routes/new' component={NewRoute}/>
           <ProtectedRoute exact path='/home/routes/edit' component={EditRoute}/>
+          <ProtectedRoute exact path='/home/workouts' component={Workouts}/>
           <ProtectedRoute  path='/home' component={DashboardContainer}/> 
         </Switch>
         </>
