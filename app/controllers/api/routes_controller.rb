@@ -14,7 +14,7 @@ class Api::RoutesController < ApplicationController
     end
 
     def update
-        @routes = Route.all
+        @routes = current_user.routes
         @route = Route.find(params[:id])
         if @route.update(route_params)
             render :index

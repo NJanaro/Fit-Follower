@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_220025) do
+ActiveRecord::Schema.define(version: 2021_01_06_191401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 2020_12_28_220025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "workout_name", null: false
+    t.string "distance", null: false
+    t.string "duration", null: false
+    t.string "average_pace", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "workout_description"
+    t.string "date_complete"
+    t.integer "user_id"
   end
 
 end

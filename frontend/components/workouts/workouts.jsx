@@ -12,12 +12,18 @@ class Workouts extends React.Component {
     render(){
         return(
             <>
-          
-            <div className="dashboard-main">
-              <div className="dashboard-background">
-                <div> This will be the the Users Workouts</div>
+            <div className="my-routes-main">
+              <div className="my-routes-top">
+                <h1 id="page-title">My Workouts</h1>
+                <Link 
+                  to="/home/workouts/new"
+                  className="sign-up-button">
+                Log New Workout    
+                </Link>
               </div>
-            </div>
+            </div>      
+
+
           </>
         )
     }
