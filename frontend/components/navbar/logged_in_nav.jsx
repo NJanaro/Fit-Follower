@@ -13,7 +13,9 @@ class LoggedInNav extends React.Component {
     return (
       <nav className="navbar-box">
         <div className="navbar-left">
-          <h1 className="navbar-logo">Fit Follower</h1>
+          <Link to='/home/dashboard' style={{textDecoration:"none"}}>
+            <h1 className="navbar-logo">Fit Follower</h1>
+          </Link>
           <div
             className="search"
             style={{ backgroundImage: `url(${window.magURL})` }}
@@ -23,7 +25,7 @@ class LoggedInNav extends React.Component {
               <Link className="dashboard-links" to="/home/routes">
                 My Routes
               </Link>
-              <Link className="dashboard-links" to="/home/dashboard">
+              <Link className="dashboard-links" to="/home/workouts">
                 My Workouts
               </Link>
             </div>
