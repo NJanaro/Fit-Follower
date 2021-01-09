@@ -1,0 +1,25 @@
+.workout-form{
+    display:flex;
+    justify-content: space-around;
+    width: auto;
+    height: auto;
+    background-color: #EEEEEE;
+}
+
+.workout-input{
+    padding-left: 2%;
+    margin: 8px;
+    height: 22px;
+    border: 1px solid #666666;
+    border-radius: 4px;
+    width: 20%;
+    
+}
+
+.workout-input:focus{
+    border: 1px solid #666666;
+    box-shadow: 0px 0px 3px #72B4E9;
+    opacity: 1;
+    outline: none;
+    // border-radius: 8px;
+}

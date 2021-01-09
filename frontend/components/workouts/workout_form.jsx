@@ -10,7 +10,21 @@ class WorkoutForm extends React.Component {
 
     render(){
         return(
-            <h1>Workout Form!</h1>
+        <>
+            <div className="my-routes-main">
+                <div className="workout-form">
+                    <form>
+                            <input className="workout-input" type="text"/>
+                            <input className="workout-input" type="text"/>
+                            <input className="workout-input" type="text"/>
+                            <input className="workout-input" type="text"/>
+
+                        
+                    </form>
+                </div>
+            </div>
+
+        </>
         )
     }
 
