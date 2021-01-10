@@ -17,7 +17,9 @@ class Workouts extends React.Component {
                 <h1 id="page-title">My Workouts</h1>
                 <Link 
                   to="/home/workouts/new"
-                  className="sign-up-button">
+                  className="sign-up-button"
+                  style={{marginBottom:"18px"}}>
+
                 Log New Workout    
                 </Link>
               </div>
