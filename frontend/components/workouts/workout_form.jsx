@@ -17,19 +17,19 @@ class WorkoutForm extends React.Component {
               </div>      
                 <div className="workout-form">
                     <form>
-                        <div className="distanceDiv">
+                        <div className="workoutDiv">
                             <input id="distance" className="workout-input" type="text"/>
                             <input id="sport" className="workout-input" type="text"/>
                         </div>
-
+                        <div className="workoutDiv">
                             <input id="workoutName" className="workout-input" type="text"/>
+                            <input id="workoutDescription" className="workout-input" type="text"/>
+                            <input id="dateComplete" className="workout-input" type="text"/>
+                        </div>
+                        <div className="workoutDiv">
                             <input id="duration" className="workout-input" type="text"/>
                             <input id="averagePace" className="workout-input" type="text"/>
-                            <input id="dateComplete" className="workout-input" type="text"/>
-                            <input id="workoutDescription" className="workout-input" type="text"/>
-
-
-                        
+                        </div>
                     </form>
                 </div>
             </div>

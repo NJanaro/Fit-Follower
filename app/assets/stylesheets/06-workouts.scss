@@ -1,10 +1,13 @@
 .workout-form{
     display:flex;
     justify-content: space-between;
-    width: auto;
+    align-content: center;
+    flex-direction: column;
+    width: 75%;
     height: auto;
     background-color: #EEEEEE;
     margin-top: 18px;
+    margin-left: 5%;
 }
 
 .workout-input{
@@ -23,4 +26,10 @@
     opacity: 1;
     outline: none;
     // border-radius: 8px;
+}
+
+.workoutDiv {
+    display: flex;
+    
+    margin: 10px;
 }
