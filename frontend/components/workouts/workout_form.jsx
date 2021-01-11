@@ -6,6 +6,17 @@ class WorkoutForm extends React.Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            user_id: this.props.userId,
+            workout_name: "",
+            distance: "",
+            duration: "",
+            average_pace: "",
+            workout_description: "",
+            date_complete: "",
+            sport: ""
+        }
+
     }
 
     render(){
