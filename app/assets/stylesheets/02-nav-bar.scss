@@ -59,6 +59,7 @@
 
 .sign-up-button:hover {
     background-color: #ed2d2d;
+    cursor: pointer;
 }
 
 .login-button {
@@ -116,6 +117,10 @@
     border-bottom: 1px solid transparent;
     z-index: 6;
 
+}
+
+.dashboard-hidden-trigger:hover{
+    cursor: default;
 }
 
 .dashboard-hidden-content {

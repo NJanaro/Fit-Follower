@@ -21,8 +21,8 @@ class WorkoutForm extends React.Component {
 
     update(field){
         return (e)=>{
-            console.log(Object.values(this.state.distance).join(" ").split(""));
-            return this.setState({[field]:e.currentTarget.value + " mi"})
+            console.log(typeof this.state.distance)
+            return this.setState({[field]:e.currentTarget.value.toString()})
 
         }
     }
@@ -52,8 +52,12 @@ class WorkoutForm extends React.Component {
                         <div className="workoutDiv">
                             <label htmlFor="workoutName">Workout Name</label>
                             <input id="workoutName" className="workout-input" type="text"/>
+                        </div>
+                        <div className="workoutDiv">
                             <label htmlFor="workoutDescription">Description</label>
-                            <input id="workoutDescription" className="workout-input" type="text"/>
+                            <textarea style={{height:"45px"}} id="workoutDescription" className="workout-input"/>
+                        </div>
+                        <div className="workoutDiv">
                             <label htmlFor="dateComplete">Date Finished</label>
                             <input style={{width:"200px "}} id="dateComplete" className="workout-input" type="date"/>
                         </div>
