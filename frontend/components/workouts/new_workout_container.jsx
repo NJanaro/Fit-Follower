@@ -3,8 +3,9 @@ import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import WorkoutForm from './workout_form';
 
-const mSTP = ()=>({
-    newOrEdit: "New Workout"
+const mSTP = ({session})=>({
+    newOrEdit: "New Workout",
+    userId: session.currentUser.id
 
 })
 
