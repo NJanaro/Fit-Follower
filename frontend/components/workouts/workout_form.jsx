@@ -19,6 +19,7 @@ class WorkoutForm extends React.Component {
         }
         this.update = this.update.bind(this);
         this.calcPace = this.calcPace.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     update(field){
@@ -57,6 +58,36 @@ class WorkoutForm extends React.Component {
         }
     }
 
+    handleSubmit(e){
+        const cb = function(promise){
+          if(promise){
+            this.setState({redirect:true})
+          }
+        }.bind(this)
+        
+        e.preventDefault();
+        // let info = JSON.stringify(this.state)
+        if (this.props.newOrEdit == "New Workout"){
+          let workout = {
+              athlete_id:this.props.userId,
+              workout_name:this.state.workout_name,
+              workout_description:this.state.workout_description, 
+              distance:this.state.distance, 
+              date_complete:this.state.date_complete, 
+              average_pace:this.state.average_pace, 
+              sport:this.state.sport
+            };  
+          this.props.processForm(this.props.userId, workout)
+            .then((promise) => {
+                cb(promise)}
+              );
+        }else if(this.props.newOrEdit == "Update"){
+          this.props.processForm(this.props.userId, this.props.workoutId, this.state)
+            .then((promise) => {
+                cb(promise)
+            });
+        }
+    }
 
 
     render(){
@@ -102,7 +133,7 @@ class WorkoutForm extends React.Component {
                                 <input style={{width:"50px"}} id="averagePace" className="workout-input" type="text" value={this.state.average_pace} disabled/>
                                 <label htmlFor="averagePace" style={{fontSize:"10px"}}>/mile</label>
                             </span>
-                            <div style={{margin:"8px"}} className="sign-up-button">Save</div>
+                            <div style={{margin:"8px"}} className="sign-up-button" onClick={this.handleSubmit}>Save</div>
                         </div>
                     </form>
                 </div>
