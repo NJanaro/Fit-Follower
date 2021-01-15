@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
 
 class WorkoutForm extends React.Component {
@@ -10,12 +11,13 @@ class WorkoutForm extends React.Component {
             user_id: this.props.userId,
             workout_name: "",
             distance: "",
+            duration:"",
             durationMin: "0",
             durationSec:"0",
             average_pace: "",
             workout_description: "",
             date_complete: "",
-            sport: ""
+            sport: "WALKING"
         }
         this.update = this.update.bind(this);
         this.calcPace = this.calcPace.bind(this);
@@ -47,13 +49,13 @@ class WorkoutForm extends React.Component {
             sec = sec / 60;
             let time = min + sec;
             time = parseFloat(time / dist);
-            time = minTommss(time);
-            if(this.state.average_pace !== time){
-                this.setState({"average_pace":time})   
+            let averagePace = minTommss(time);
+            if(this.state.average_pace !== averagePace){
+                this.setState({"average_pace":averagePace, "duration":time.toString()})   
             }
         }else{
             if(this.state.average_pace !== ""){
-                return this.setState({"average_pace":""});
+                return this.setState({"average_pace":"", "duration":""});
             }
         }
     }
@@ -75,7 +77,8 @@ class WorkoutForm extends React.Component {
               distance:this.state.distance, 
               date_complete:this.state.date_complete, 
               average_pace:this.state.average_pace, 
-              sport:this.state.sport
+              sport:this.state.sport,
+              duration: this.state.duration
             };  
           this.props.processForm(this.props.userId, workout)
             .then((promise) => {
@@ -92,6 +95,13 @@ class WorkoutForm extends React.Component {
 
     render(){
         this.calcPace(this.state.durationMin, this.state.durationSec, this.state.distance);
+        
+        if (this.state.redirect){
+            return <Redirect to='/home/workouts'/>;
+          }else if(this.props.newOrEdit == "Update" && !this.updated){
+            return null;
+          }
+
         return(
         <>
             <div className="my-routes-main">

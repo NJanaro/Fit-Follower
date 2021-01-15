@@ -8,11 +8,11 @@ export default (state = initialState, action) => {
   case RECEIVE_WORKOUT:
     return initialState;
   case RECEIVE_WORKOUT_ERRORS:
-    // if (action.errors){
+    if (action.errors){
       return action.errors;
-    // }else{
-    //   return initialState;
-    // }
+    }else{
+      return initialState;
+    }
   default: 
     return initialState;
   }
