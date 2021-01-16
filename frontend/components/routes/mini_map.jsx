@@ -27,7 +27,6 @@ class MiniMap extends React.Component {
         this.bounds = new google.maps.LatLngBounds();
         
         for (let i = 0; i < this.markers.length; i++) {
-          // debugger;
           this.bounds.extend(this.markers[i]);
           
         }

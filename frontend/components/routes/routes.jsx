@@ -27,7 +27,6 @@ class Routes extends React.Component {
         <div className="myMiniMaps">
           {Object.values(this.props.routes).map((route, idx)=> {
             let time = route.created_at.split("T")
-            // debugger
             return <div key={`route=${idx}`} className="miniMap">
               {/* <MiniMap info={route}/> */}
               <Link to={{

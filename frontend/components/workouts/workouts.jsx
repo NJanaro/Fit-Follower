@@ -21,8 +21,6 @@ class Workouts extends React.Component {
     }
 
     render(){
-      // debugger
-
         return(
             <>
             <div className="my-routes-main">

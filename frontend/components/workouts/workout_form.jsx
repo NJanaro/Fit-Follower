@@ -26,7 +26,6 @@ class WorkoutForm extends React.Component {
 
     update(field){
         return (e)=>{
-            console.log(this.state)
             return this.setState({[field]:e.currentTarget.value.toString()})
 
         }
@@ -39,7 +38,6 @@ class WorkoutForm extends React.Component {
                 var sign = minutes < 0 ? "-" : "";
                 var min = Math.floor(Math.abs(minutes));
                 var sec = Math.floor((Math.abs(minutes) * 60) % 60);
-                // debugger
                 return sign + (min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec;
                }
 
