@@ -5,7 +5,7 @@ import Routes from './routes/my_routes_container';
 import NewRoute from './routes/new_routes_container';
 import EditRoute from './routes/edit_routes_container';
 import DashboardContainer from "./dashboard/dashboard";
-import Workouts from "./workouts/workouts";
+import Workouts from "./workouts/workouts_container";
 import EditWorkout from "./workouts/edit_workout_container";
 import NewWorkout from "./workouts/new_workout_container";
 

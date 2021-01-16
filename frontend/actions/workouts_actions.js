@@ -36,7 +36,7 @@ const deleteWorkout = (userId, workoutId) => {
 
 export const fetchWorkouts = (userId) => dispatch => {
     return WorkoutApiUtil.fetchWorkouts(userId)
-        .then(workout => dispatch(receiveWorkouts(workout)))
+        .then(workouts => dispatch(receiveWorkouts(workouts)))
 }
 
 export const fetchWorkout = (userId, workoutId) => dispatch => {
