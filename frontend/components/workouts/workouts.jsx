@@ -4,13 +4,15 @@ import {Link, withRouter} from 'react-router-dom';
 
 class Workouts extends React.Component {
 
-    constructor(props){
-        super(props);
-        this.props.getWorkouts(this.props.userId);
-        this.state = {
-          updated:false
-        }
+  constructor(props){
+    super(props);
+    this.state = {
+      updated:false
     }
+  
+    this.props.getWorkouts(this.props.userId);
+  
+  }
 
     
 
@@ -21,6 +23,9 @@ class Workouts extends React.Component {
     }
 
     render(){
+      if(!this.props.workouts[1] && this.state.updated == false) {
+        return null;
+      }
         return(
             <>
             <div className="my-routes-main">
@@ -46,7 +51,7 @@ class Workouts extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                {this.props.workouts.map(wo => {
+                {Object.values(this.props.workouts).map(wo => {
                   let des;
                   let spo;
                   wo.sport == "WALKING" ? spo = "run" : spo = "bike";

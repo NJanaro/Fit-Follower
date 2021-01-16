@@ -41,7 +41,7 @@ export const fetchWorkouts = (userId) => dispatch => {
 
 export const fetchWorkout = (userId, workoutId) => dispatch => {
     return WorkoutApiUtil.fetchWorkout(userId, workoutId)
-        .then(workout => dispatch(receiveWorkouts(workout)))
+        .then(workout => dispatch(receiveWorkout(workout)))
 }
 
 export const createWorkout = (userId, workout) => dispatch => {

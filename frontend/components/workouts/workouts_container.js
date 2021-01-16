@@ -5,7 +5,7 @@ import Workouts from './workouts';
 import {fetchWorkouts} from '../../actions/workouts_actions';
 
 const mSTP = ({entities, session}) => ({
-    workouts:Object.values(entities.workouts),
+    workouts:entities.workouts,
     userId: session.currentUser.id,
 });
 

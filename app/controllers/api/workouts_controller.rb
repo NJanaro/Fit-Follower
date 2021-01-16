@@ -11,7 +11,7 @@ class Api::WorkoutsController < ApplicationController
     end
 
     def create
-        @workouts = Workout.all
+        @workouts = current_user.workouts
         @workout = Workout.new(workout_params)
         if @workout.save
             render :index
@@ -44,7 +44,7 @@ class Api::WorkoutsController < ApplicationController
 
 
     def workout_params 
-        params.require(:workout).permit(:athlete_id, :workout_name, :workout_description, :distance, :duration, :average_pace, :date_complete, :sport)
+        params.require(:workout).permit(:duration_min, :duration_sec, :athlete_id, :workout_name, :workout_description, :distance, :duration, :average_pace, :date_complete, :sport)
     end
 
 

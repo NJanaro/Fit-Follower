@@ -7,21 +7,52 @@ class WorkoutForm extends React.Component {
     constructor(props){
         super(props);
 
+           
+    if(this.props.newOrEdit == "Update"){
+        this.props.getWorkout(this.props.userId, this.props.workoutId)
+    }
+
         this.state = {
             user_id: this.props.userId,
             workout_name: "",
             distance: "",
             duration:"",
             durationMin: "0",
-            durationSec:"0",
+            durationSec: "0",
             average_pace: "",
             workout_description: "",
             date_complete: "",
             sport: "WALKING"
         }
+        this.updated = false;
         this.update = this.update.bind(this);
         this.calcPace = this.calcPace.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+    componentDidUpdate(prevProps){
+        if (prevProps !== this.props && this.props.newOrEdit == "Update"){
+            debugger
+        //   if(!this.updated){
+        //     this.workoutDetails = JSON.parse(this.props.workout);
+        //   }else{
+        //     this.workoutDetails = {sport: "run"};
+        //   }
+          this.setState({
+            workout_name: this.props.workout.workout_name,
+            distance: this.props.workout.distance,
+            duration: this.props.workout.duration,
+            durationMin: this.props.workout.duration_min,
+            durationSec:this.props.workout.duration_sec,
+            average_pace: this.props.workout.average_pace,
+            workout_description: this.props.workout.workout_description,
+            date_complete: this.props.workout.date_complete,
+            sport: this.props.workout.sport,
+            redirect:false
+          });
+          this.updated = true;
+        }
     }
 
     update(field){
@@ -76,7 +107,9 @@ class WorkoutForm extends React.Component {
               date_complete:this.state.date_complete, 
               average_pace:this.state.average_pace, 
               sport:this.state.sport,
-              duration: this.state.duration
+              duration: this.state.duration,
+              duration_min: this.state.durationMin,
+              duration_sec: this.state.durationSec
             };  
           this.props.processForm(this.props.userId, workout)
             .then((promise) => {
@@ -112,28 +145,28 @@ class WorkoutForm extends React.Component {
                         <div className="workoutDiv">
                             
                             <label htmlFor="distance">Distance</label>
-                            <input style={{width:"50px"}} id="distance" onChange={this.update("distance")} className="workout-input" type="number"/>
+                            <input style={{width:"50px"}} id="distance" onChange={this.update("distance")} className="workout-input" type="number" value={this.state.distance}/>
                             <label htmlFor="duration">Duration</label>
-                            <input style={{width:"30px", marginRight:"0", borderRadius:"0"}} id="duration" onChange={this.update("durationMin")}  className="workout-input" type="number"/>
-                            <input style={{width:"30px", marginLeft:"0", marginRight:"1px", borderRadius:"0"}} id="duration" onChange={this.update("durationSec")} className="workout-input" type="number" min="0" max="59"/>
+                            <input style={{width:"30px", marginRight:"0", borderRadius:"0"}} id="duration" onChange={this.update("durationMin")}  className="workout-input" type="number" value={this.state.durationMin}/ >
+                            <input style={{width:"30px", marginLeft:"0", marginRight:"1px", borderRadius:"0"}} id="duration" onChange={this.update("durationSec")} className="workout-input" type="number" min="0" max="59" value={this.state.durationSec}/>
                             <label htmlFor="duration" style={{fontSize:"10px", marginRight:"8px"}}>min/sec</label>
                             <label htmlFor="sport" style={{marginRight:"8px"}}>Sport</label>
-                            <select id="sport" onChange={this.update("sport")}>
+                            <select defaultValue={this.state.sport} id="sport" onChange={this.update("sport")}>
                                 <option value="WALKING">Run</option>
                                 <option value="BICYCLING">Bike</option>
                             </select>
                         </div>
                         <div className="workoutDiv">
                             <label htmlFor="workoutName">Workout Name</label>
-                            <input id="workoutName" className="workout-input" onChange={this.update("workout_name")} type="text" />
+                            <input id="workoutName" className="workout-input" onChange={this.update("workout_name")} type="text" value={this.state.workout_name} />
                         </div>
                         <div className="workoutDiv">
                             <label htmlFor="workoutDescription">Description</label>
-                            <textarea style={{height:"45px"}} id="workoutDescription" className="workout-input" onChange={this.update("workout_description")}/>
+                            <textarea style={{height:"45px"}} id="workoutDescription" className="workout-input" onChange={this.update("workout_description")} value={this.state.workout_description}/>
                         </div>
                         <div className="workoutDiv">
                             <label htmlFor="dateComplete">Date Finished</label>
-                            <input style={{width:"200px "}} id="dateComplete" className="workout-input" type="date" onChange={this.update("date_complete")}/>
+                            <input style={{width:"200px "}} id="dateComplete" className="workout-input" type="date" onChange={this.update("date_complete")} value={this.state.date_complete}/>
                         </div>
                         <div style={{display:"flex", justifyContent:"space-between"}} className="workoutDiv">
                             <span style={{display:"flex"}}>
