@@ -33,12 +33,6 @@ class WorkoutForm extends React.Component {
 
     componentDidUpdate(prevProps){
         if (prevProps !== this.props && this.props.newOrEdit == "Update"){
-            debugger
-        //   if(!this.updated){
-        //     this.workoutDetails = JSON.parse(this.props.workout);
-        //   }else{
-        //     this.workoutDetails = {sport: "run"};
-        //   }
           this.setState({
             workout_name: this.props.workout.workout_name,
             distance: this.props.workout.distance,

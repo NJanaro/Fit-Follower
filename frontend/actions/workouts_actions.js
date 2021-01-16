@@ -52,7 +52,7 @@ export const createWorkout = (userId, workout) => dispatch => {
 }
 
 export const updateWorkout = (userId, workoutId, workout) => dispatch => {
-    return WorkoutApiUtil.updateWorkout(userId, workoutId, workout)
+    return WorkoutApiUtil.editWorkout(userId, workoutId, workout)
         .then(workouts => dispatch(receiveWorkouts(workouts)),
         (err) => dispatch(receiveWorkoutErrors(err.responseJSON))
         )
