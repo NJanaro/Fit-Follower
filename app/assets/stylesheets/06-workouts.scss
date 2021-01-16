@@ -1,0 +1,72 @@
+
+td{
+    padding: 6px;
+    width:200px;
+    text-align: center;
+    font-size: 12px;
+}
+
+table {
+    // border-collapse: separate;
+    border-spacing: 10px 5px;
+}
+
+th {
+    padding:5px;
+    background-color: #F7F7FA;
+    // background-color: blue;
+    border-bottom:1px solid #DFDFE8;
+    // border-bottom:1px solid black;
+}
+
+
+
+#workoutTable {
+    box-shadow:2px 2px 4px #b8b8b8;
+    margin-top: 15px;
+}
+
+.workoutTableMain{
+    display:flex;
+    justify-content: center;
+}
+
+.workout-form{
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: column;
+    width: 475px;
+    height: auto;
+    background-color: #EEEEEE;
+    margin-top: 18px;
+    margin-left: 5%;
+    border-radius: 3px;
+    box-shadow: 10px 10px 10px  lightgrey;
+}
+
+.workout-input{
+    padding-left: 2%;
+    margin: 8px;
+    height: 22px;
+    border: 1px solid #666666;
+    border-radius: 4px;
+    width: 250px;
+    
+}
+
+.workout-input:focus{
+    
+    border: 1px solid #666666;
+    box-shadow: 0px 0px 3px #72B4E9;
+    opacity: 1;
+    outline: none;
+    // border-radius: 8px;
+}
+
+.workoutDiv {
+    display: flex;
+    
+    margin: 10px;
+}
+

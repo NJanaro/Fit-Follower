@@ -88,7 +88,8 @@ class Routes extends React.Component {
                   <h1 id="page-title">My Routes</h1>
                   <Link 
                     to="/home/routes/new"
-                    className="sign-up-button">
+                    className="sign-up-button"
+                    style={{marginBottom:"18px"}}>
                   Create New Route    
                   </Link>
                 </div>

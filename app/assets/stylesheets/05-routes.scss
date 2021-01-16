@@ -95,7 +95,6 @@
 
 .my-routes-main {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
     width: auto;
     height: 100vh;
@@ -111,7 +110,8 @@
 
 .my-routes-top { 
     width: 100%;
-    height: 110px;
+    // height: 110px;
+    height: auto;
     border-bottom: solid 1px #DFDFE8;
 }
 
