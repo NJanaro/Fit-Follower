@@ -15,7 +15,7 @@ const persistedReducer = persistReducer(persistConfig, RootReducer)
 
 
 export default (preloadedState = {}) => {
-    let store = createStore(persistedReducer, preloadedState, applyMiddleware(thunk, logger));
+    let store = createStore(persistedReducer, preloadedState, applyMiddleware(thunk));
     let persistor = persistStore(store);
     return {store, persistor};
     // return createStore(RootReducer, preloadedState, applyMiddleware(thunk, logger))
