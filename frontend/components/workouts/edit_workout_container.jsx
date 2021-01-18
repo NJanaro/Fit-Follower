@@ -2,7 +2,7 @@ import React from 'react';
 import WorkoutForm from './workout_form';
 import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchWorkout, updateWorkout} from '../../actions/workouts_actions'
+import {fetchWorkout, updateWorkout, deleteWorkout} from '../../actions/workouts_actions'
 
 
 const mSTP = ({session, entities, errors},ownProps)=>{
@@ -20,7 +20,8 @@ const mSTP = ({session, entities, errors},ownProps)=>{
 
 const mDTP = (dispatch) => ({
     getWorkout: (userId, workoutId) => dispatch(fetchWorkout(userId, workoutId)),
-    processForm: (userId, workoutId, workout) => dispatch(updateWorkout(userId, workoutId, workout))
+    processForm: (userId, workoutId, workout) => dispatch(updateWorkout(userId, workoutId, workout)),
+    delete: (userId, workoutId) => dispatch(deleteWorkout(userId, workoutId))
 })
 
 export default withRouter(connect(mSTP, mDTP)(WorkoutForm));

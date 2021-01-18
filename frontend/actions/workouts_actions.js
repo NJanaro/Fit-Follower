@@ -26,13 +26,13 @@ const receiveWorkouts = (workouts) => {
     }
 }
 
-const deleteWorkout = (userId, workoutId) => {
-    return {
-        type: DELETE_WORKOUT,
-        userId,
-        workoutId
-    }
-}
+// const deleteWorkout = (userId, workoutId) => {
+//     return {
+//         type: DELETE_WORKOUT,
+//         userId,
+//         workoutId
+//     }
+// }
 
 export const fetchWorkouts = (userId) => dispatch => {
     return WorkoutApiUtil.fetchWorkouts(userId)
@@ -56,4 +56,9 @@ export const updateWorkout = (userId, workoutId, workout) => dispatch => {
         .then(workouts => dispatch(receiveWorkouts(workouts)),
         (err) => dispatch(receiveWorkoutErrors(err.responseJSON))
         )
+}
+
+export const deleteWorkout = (userId, workoutId) => dispatch => {
+    return WorkoutApiUtil.destroyWorkout(userId, workoutId)
+        .then(workouts => dispatch(receiveWorkouts(workouts)))
 }

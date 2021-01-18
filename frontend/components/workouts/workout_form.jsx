@@ -28,6 +28,8 @@ class WorkoutForm extends React.Component {
         this.update = this.update.bind(this);
         this.calcPace = this.calcPace.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.renderButtons = this.renderButtons.bind(this);
     }
 
 
@@ -117,6 +119,36 @@ class WorkoutForm extends React.Component {
         }
     }
 
+    handleDelete(e){
+        const cb = function(promise){
+          if(promise){
+            this.setState({redirect:true})
+          }
+        }.bind(this)
+    
+        e.preventDefault();
+    
+        this.props.delete(this.props.userId, this.props.workoutId)
+          .then((promise) => {
+            cb(promise)
+            });
+    
+      }
+
+    renderButtons(){
+        if(this.props.newOrEdit == "Update"){
+            return(
+                <div>
+                    <div style={{margin:"8px"}} className="sign-up-button" onClick={this.handleSubmit}>Save</div>
+                    <div style={{margin:"8px"}} className="sign-up-button" onClick={this.handleDelete}>Delete</div>
+                </div>
+            )
+        }else{
+            return(
+                <div style={{margin:"8px"}} className="sign-up-button" onClick={this.handleSubmit}>Save</div>
+            )
+        }
+    }
 
     render(){
         this.calcPace(this.state.durationMin, this.state.durationSec, this.state.distance);
@@ -168,7 +200,7 @@ class WorkoutForm extends React.Component {
                                 <input style={{width:"50px"}} id="averagePace" className="workout-input" type="text" value={this.state.average_pace} disabled/>
                                 <label htmlFor="averagePace" style={{fontSize:"10px"}}>/mile</label>
                             </span>
-                            <div style={{margin:"8px"}} className="sign-up-button" onClick={this.handleSubmit}>Save</div>
+                            {this.renderButtons()}
                         </div>
                     </form>
                 </div>

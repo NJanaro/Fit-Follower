@@ -28,7 +28,7 @@ export const editWorkout = (userId, workoutId, workout) => {
 
 export const destroyWorkout = (userId, workoutId) => {
     return $.ajax ({
-        url: `/api/users/${userId}/workouts`,
+        url: `/api/users/${userId}/workouts/${workoutId}`,
         method: 'DELETE'
     })
 }

@@ -1,6 +1,7 @@
 class Api::WorkoutsController < ApplicationController
 
     def index
+        # debugger
         @workouts = current_user.workouts
         render :index
     end

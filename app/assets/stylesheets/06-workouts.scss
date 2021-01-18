@@ -1,21 +1,18 @@
 
 td{
-    padding: 6px;
+    padding: 10px;
     width:200px;
     text-align: center;
-    font-size: 12px;
-}
-
-table {
-    // border-collapse: separate;
-    border-spacing: 10px 5px;
+    font-size: 18px;
 }
 
 th {
-    padding:5px;
+    padding:10px;
     background-color: #F7F7FA;
     // background-color: blue;
     border-bottom:1px solid #DFDFE8;
+    font-size: 18px;
+    font-weight: bold;
     // border-bottom:1px solid black;
 }
 
