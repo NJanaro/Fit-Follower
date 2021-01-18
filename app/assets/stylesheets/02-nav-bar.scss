@@ -6,10 +6,20 @@
     padding: 11px;
     background-color: #ffffff;
     border-bottom: solid 1px #f0f0f5;
+}
 
-
-    // width: 1250px;
-
+.footer-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    border-top: solid 1px #f0f0f5;
+    bottom:0px;
+    width: 100%;
+    position: fixed;
 }
 
 .navbar-logo{
@@ -23,12 +33,7 @@
 .navbar-left {
     display: flex;
     align-items: center;
-    // display: inline-block;
-    
     height: 16px;
-    // margin-right: auto;
-    
-    
     padding-left: 13%;
     @media only screen and (min-width: 1620px) {
         padding-left: 26%;
@@ -40,6 +45,7 @@
         padding-right: 26.5%;
   }
 }
+
 
 .sign-up-button {
     text-align: center;
@@ -93,13 +99,8 @@
 .dashboard-hidden-trigger {
     box-sizing: content-box;
     display:flex;
-    // justify-content: center;
-    // align-items: center;
     width: 100px;
     margin-left: 10px;
-    // text-align: center;
-    // margin-right: 10px;
-    // box-sizing: content-box;
     color: black;
     font-size: 14px;
     font-weight: normal;
@@ -116,7 +117,6 @@
     border-right: 1px solid transparent;
     border-bottom: 1px solid transparent;
     z-index: 6;
-
 }
 
 .dashboard-hidden-trigger:hover{
@@ -163,7 +163,6 @@
     display:block;
     top: 54px;
     left: 10px;
-    // outline: 1px solid lightgray;
     border-top: 1px solid lightgray;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
@@ -176,3 +175,9 @@
     background-color: lightgray;
 }
 
+.footerLink{
+    display:inline-block;
+    width:32px;
+    height:32px;
+    margin:20px;
+}

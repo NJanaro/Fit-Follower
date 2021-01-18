@@ -150,20 +150,20 @@ class RouteForm extends React.Component {
           <>
             <div className="new-route-main">
                 <div className="new-route-sidebar">
-                  <form onSubmit={this.handleSubmit}>
+                  <form className="route-form" onSubmit={this.handleSubmit}>
                     <div>{this.renderErrors()}</div>
                     <label htmlFor="route-name">Route Name</label>
-                    <input id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
+                    <input className="route-input" id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
                     <label htmlFor="route-description">Description</label>
-                    <textarea id="route-description" onChange={this.update("description")} value={this.state.description}/>
+                    <textarea style={{height: "100px"}} className="route-input"  id="route-description" onChange={this.update("description")} value={this.state.description}/>
                     <label htmlFor="route-mode">Travel Mode</label> <br></br>
-                    <select defaultValue={this.routeDetails.travelMode} id="route-mode">
+                    <select style={{width:"80px"}} className="route-input"  defaultValue={this.routeDetails.travelMode} id="route-mode">
                       <option value="WALKING">Run</option>
                       <option value="BICYCLING">Bike</option>
                     </select>
                     <br></br>
                     <label htmlFor="route-distance-text">Distance</label>
-                    <input id="route-distance-text" onChange={this.update("distance")} type="text" disabled={true} value={this.state.distance}/>
+                    <input className="route-input" id="route-distance-text" onChange={this.update("distance")} type="text" disabled={true} value={this.state.distance}/>
                   </form>
                 </div>
                 <div id="map-main">

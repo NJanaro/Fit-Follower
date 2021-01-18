@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './components/navbar/footer';
 import NavLoginContainer from './components/navbar/nav_login_container';
 import SignupUserContainer from './components/welcome/create_user_container';
 import LoginUserContainer from './components/welcome/login_user_container';
@@ -24,6 +25,7 @@ class App extends React.Component {
                 <AuthRoute exact path='/signup' component={SignupUserContainer}/>
                 <AuthRoute path='/' component={Splash}/>
             </Switch>
+                <Route path='/' component={Footer}/>
             </>
         )
     }

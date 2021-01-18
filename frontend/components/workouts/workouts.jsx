@@ -71,7 +71,7 @@ class Workouts extends React.Component {
                       </td>
                       <td>{des}</td>
                       <td>{spo}</td>
-                      <td>{wo.average_pace}</td>
+                      <td>{wo.average_pace} /mile</td>
                       <td>{wo.date_complete}</td>
                     </tr>
                   )

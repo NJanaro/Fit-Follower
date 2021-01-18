@@ -1,3 +1,22 @@
+.route-input{
+    text-align: center;
+    padding-left: 2%;
+    margin: 8px;
+    height: 22px;
+    border: 1px solid #666666;
+    border-radius: 4px;
+    width: 150px;
+    
+}
+
+.route-input:focus{
+    
+    border: 1px solid #666666;
+    box-shadow: 0px 0px 3px #72B4E9;
+    opacity: 1;
+    outline: none;
+    // border-radius: 8px;
+}
 
 
 #map-main {
@@ -72,6 +91,13 @@
     text-decoration: none;
 }
 
+.route-form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+}
+
 .routeName:hover{
     text-decoration: underline;
 }
@@ -86,21 +112,25 @@
 }
 
 .new-route-sidebar {
+    align-content: center;
     min-width: 210px;
     max-width: 210px;
     height: calc(100vh - 55px);
     margin-right: 10px;
-    background-color: grey;
+    margin-top: 58px;
+    // background-color: #F7F7FA;
 }
 
 .my-routes-main {
+    // background-color: #F7F7FA;
     display: flex;
     flex-direction: column;
     width: auto;
-    height: 100vh;
-    margin-left: 12.5%;
-    margin-right: 12.5%;
-    margin-top: 30px;
+    height: 83vh;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    margin-top: 2vh ;
+    // padding-top: 30px;
 }
 
 .myMiniMaps {

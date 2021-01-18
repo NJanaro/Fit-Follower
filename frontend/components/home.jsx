@@ -4,12 +4,13 @@ import {ProtectedRoute} from '../utils/front_end_route_utils';
 import Routes from './routes/my_routes_container';
 import NewRoute from './routes/new_routes_container';
 import EditRoute from './routes/edit_routes_container';
-import DashboardContainer from "./dashboard/dashboard";
+// import DashboardContainer from "./dashboard/dashboard";
 import Workouts from "./workouts/workouts_container";
 import EditWorkout from "./workouts/edit_workout_container";
 import NewWorkout from "./workouts/new_workout_container";
+import Footer from "./navbar/footer";
 
-import {Switch, withRouter} from 'react-router-dom';
+import {Switch, withRouter, Route} from 'react-router-dom';
 
 const Home = () => {
     return(
@@ -22,8 +23,10 @@ const Home = () => {
           <ProtectedRoute exact path='/home/workouts' component={Workouts}/>
           <ProtectedRoute exact path='/home/workouts/new' component={NewWorkout}/>
           <ProtectedRoute exact path='/home/workouts/edit' component={EditWorkout}/>
-          <ProtectedRoute  path='/home' component={DashboardContainer}/> 
+          <ProtectedRoute  path='/home' component={Workouts}/> 
         </Switch>
+        {/* <Route path='/' component={Footer}/> */}
+
         </>
     )
 
