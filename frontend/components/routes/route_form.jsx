@@ -30,6 +30,7 @@ class RouteForm extends React.Component {
     this.handler = this.handler.bind(this);
     this.renderDelete = this.renderDelete.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
     
   }
 
@@ -133,6 +134,19 @@ class RouteForm extends React.Component {
     }
   }
 
+  renderErrors(){
+    return (
+      <ul>
+        {this.props.errors.map((error, idx)=> (
+          <li className='error' key={`error=${idx}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+
 
     render(){
 
@@ -151,7 +165,9 @@ class RouteForm extends React.Component {
             <div className="new-route-main">
                 <div className="new-route-sidebar">
                   <form className="route-form" onSubmit={this.handleSubmit}>
-                    <div>{this.renderErrors()}</div>
+                    <div>
+                      {this.renderErrors()}
+                    </div>
                     <label htmlFor="route-name">Route Name</label>
                     <input className="route-input" id="route-name" type="text" onChange={this.update("route_name")} value={this.state.route_name}/>
                     <label htmlFor="route-description">Description</label>

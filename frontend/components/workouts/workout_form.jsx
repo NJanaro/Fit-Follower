@@ -30,6 +30,7 @@ class WorkoutForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.renderButtons = this.renderButtons.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
 
@@ -150,6 +151,18 @@ class WorkoutForm extends React.Component {
         }
     }
 
+    renderErrors(){
+        return (
+          <ul>
+            {this.props.errors.map((error, idx)=> (
+              <li className='error' key={`error=${idx}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
     render(){
         this.calcPace(this.state.durationMin, this.state.durationSec, this.state.distance);
         
@@ -167,6 +180,9 @@ class WorkoutForm extends React.Component {
                 <h1 id="page-title">{this.props.newOrEdit}</h1>
               </div>      
                 <div>
+                    <div>
+                        {this.renderErrors()}
+                    </div>
                     <form className="workout-form">
                         <div className="workoutDiv">
                             

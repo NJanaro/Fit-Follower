@@ -42,11 +42,6 @@ class WelcomeUserForm extends React.Component {
     this.props.demoUser(this.props.demo);
   }
 
-  // componentDidUpdate(oldProps){
-  //   if(oldProps !== this.props){
-  //     this.props.resetErrors();
-  //   }
-  // }
 
   render() {
     const classN = this.props.location.pathname === "/signup" ? "sign-up-main" : "login-main"; 
