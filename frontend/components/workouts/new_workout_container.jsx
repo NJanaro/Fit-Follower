@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import WorkoutForm from './workout_form';
 import { createWorkout } from '../../actions/workouts_actions';
 
-const mSTP = ({session})=>({
+const mSTP = ({session, errors})=>({
     newOrEdit: "New Workout",
-    userId: session.currentUser.id
+    userId: session.currentUser.id,
+    errors: errors.workout
 
 })
 
