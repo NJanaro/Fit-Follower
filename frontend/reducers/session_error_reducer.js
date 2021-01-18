@@ -9,7 +9,11 @@ export default (state = initialState, action) => {
   case RECEIVE_CURRENT_USER:
     return [];
   case RECEIVE_SESSION_ERRORS:
-    return action.errors;
+    if (action.errors){
+      return action.errors;
+    }else{
+      return initialState;
+    }
   default: 
     return state
   }

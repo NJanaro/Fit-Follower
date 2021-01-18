@@ -17,7 +17,7 @@ const mSTP = ({ errors }) => ({
 
 const mDTP = (dispatch) => ({
   logout: () => dispatch(logout()),
-  processForm: (user) => dispatch(createUser(user))
+  processForm: (user) => dispatch(createUser(user)),
 });
 
 export default withRouter(connect(mSTP, mDTP)(NavBar));

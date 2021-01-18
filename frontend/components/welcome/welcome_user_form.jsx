@@ -8,6 +8,8 @@ class WelcomeUserForm extends React.Component {
         email: "",
         password: ""
     };
+    this.props.resetErrors();
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
   }
@@ -39,6 +41,12 @@ class WelcomeUserForm extends React.Component {
   demoLogin() {
     this.props.demoUser(this.props.demo);
   }
+
+  // componentDidUpdate(oldProps){
+  //   if(oldProps !== this.props){
+  //     this.props.resetErrors();
+  //   }
+  // }
 
   render() {
     const classN = this.props.location.pathname === "/signup" ? "sign-up-main" : "login-main"; 
