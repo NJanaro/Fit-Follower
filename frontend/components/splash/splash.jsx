@@ -19,6 +19,7 @@ class Splash extends React.Component {
                   />
                   <div className="link-box">
                     <a
+                      target="_blank"
                       className="github-link splash-link"
                       href="https://github.com/NJanaro"
                       style={{ backgroundImage: `url(${window.githubURL})` }}
@@ -26,6 +27,7 @@ class Splash extends React.Component {
                       Check out my GitHub
                     </a>
                     <a
+                      target="_blank"
                       className="splash-link"
                       href="mailto:nick.janaro@gmail.com?Subject=Great%20Site!"
                       style={{ backgroundImage: `url(${window.gmailURL})` }}
@@ -33,6 +35,7 @@ class Splash extends React.Component {
                       Contact me
                     </a>
                     <a
+                      target="_blank"
                       className="splash-link"
                       href="https://linkedin.com/in/nick-janaro"
                       style={{ backgroundImage: `url(${window.liURL})` }}
